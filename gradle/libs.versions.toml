@@ -63,3 +63,4 @@ secrets = { id = "com.google.android.libraries.mapsplatform.secrets-gradle-plugi
 amg-randomuser-android-application = { id = "amg.randomuser.android.application", version = "unspecified" }
 amg-randomuser-android-application-compose = { id = "amg.randomuser.android.application.compose", version = "unspecified" }
 amg-randomuser-android-application-jacoco = { id = "amg.randomuser.android.application.jacoco", version = "unspecified" }
+amg-randomuser-jvm-library = { id = "amg.randomuser.jvm.library", version = "unspecified" }

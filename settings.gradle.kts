@@ -17,3 +17,4 @@ dependencyResolutionManagement {
 rootProject.name = "RandomUser"
 
 include(":app")
+include(":core:model")

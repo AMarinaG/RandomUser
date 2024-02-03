@@ -40,6 +40,9 @@ gradlePlugin {
             id = "amg.randomuser.android.application.jacoco"
             implementationClass = "AndroidApplicationJacocoConventionPlugin"
         }
-
+        register("jvmLibrary") {
+            id = "amg.randomuser.jvm.library"
+            implementationClass = "JvmLibraryConventionPlugin"
+        }
     }
 }
