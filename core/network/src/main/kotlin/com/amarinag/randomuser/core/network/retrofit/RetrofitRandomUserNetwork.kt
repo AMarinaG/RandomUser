@@ -1,7 +1,7 @@
 package com.amarinag.randomuser.core.network.retrofit
 
 import com.amarinag.randomuser.core.network.RandomUserDataSource
-import com.amarinag.randomuser.core.network.model.NetworkUser
+import com.amarinag.randomuser.core.network.model.NetworkResponse
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import kotlinx.serialization.json.Json
 import okhttp3.Call
@@ -24,5 +24,5 @@ internal class RetrofitRandomUserNetwork @Inject constructor(
         .build()
         .create(RetrofitRandomUserApi::class.java)
 
-    override suspend fun getUsers(page: Int): List<NetworkUser> = networkApi.getUsers().users
+    override suspend fun getUsers(page: Int): NetworkResponse = networkApi.getUsers()
 }
