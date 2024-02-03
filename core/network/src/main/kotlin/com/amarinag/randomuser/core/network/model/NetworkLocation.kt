@@ -12,8 +12,6 @@ data class NetworkLocation(
     val coordinates: NetworkCoordinates,
     @SerialName("country")
     val country: String,
-    @SerialName("postcode")
-    val postcode: Int,
     @SerialName("state")
     val state: String,
     @SerialName("street")

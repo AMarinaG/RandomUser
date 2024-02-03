@@ -1,5 +1,8 @@
 package com.amarinag.randomuser.core.network.di
 
+import com.amarinag.randomuser.core.network.RandomUserDataSource
+import com.amarinag.randomuser.core.network.retrofit.RetrofitRandomUserNetwork
+import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -28,4 +31,9 @@ internal object NetworkModule {
                 setLevel(HttpLoggingInterceptor.Level.BODY)
             })
         .build()
+
+    @Provides
+    @Singleton
+    fun providesNetworkDataSource(impl: RetrofitRandomUserNetwork): RandomUserDataSource = impl
+
 }

@@ -1,5 +1,6 @@
 package com.amarinag.randomuser.core.network.retrofit
 
+import com.amarinag.randomuser.core.network.BuildConfig
 import com.amarinag.randomuser.core.network.RandomUserDataSource
 import com.amarinag.randomuser.core.network.model.NetworkResponse
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
@@ -16,7 +17,7 @@ internal class RetrofitRandomUserNetwork @Inject constructor(
     okhttpCallFactory: Call.Factory,
 ) : RandomUserDataSource {
     private val networkApi = Retrofit.Builder()
-        .baseUrl("hoho")
+        .baseUrl(BuildConfig.BASE_URL)
         .callFactory(okhttpCallFactory)
         .addConverterFactory(
             networkJson.asConverterFactory("application/json".toMediaType())
