@@ -1,4 +1,5 @@
 pluginManagement {
+    includeBuild("build-logic")
     repositories {
         google()
         mavenCentral()
@@ -14,5 +15,5 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "RandomUser"
+
 include(":app")
-include(":build-logic:convection")
