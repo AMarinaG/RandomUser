@@ -3,8 +3,8 @@ plugins {
     alias(libs.plugins.amg.randomuser.android.application)
     alias(libs.plugins.amg.randomuser.android.application.compose)
     alias(libs.plugins.amg.randomuser.android.application.jacoco)
+    alias(libs.plugins.amg.randomuser.android.hilt)
     id("jacoco")
-    id("com.google.devtools.ksp")
 
 
 }

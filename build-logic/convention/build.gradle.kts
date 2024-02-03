@@ -44,6 +44,10 @@ gradlePlugin {
             id = "amg.randomuser.android.library.jacoco"
             implementationClass = "AndroidLibraryJacocoConventionPlugin"
         }
+        register("androidHilt") {
+            id = "amg.randomuser.android.hilt"
+            implementationClass = "AndroidHiltConventionPlugin"
+        }
         register("androidLibrary") {
             id = "amg.randomuser.android.library"
             implementationClass = "AndroidLibraryConventionPlugin"

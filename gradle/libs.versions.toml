@@ -42,6 +42,7 @@ androidx-navigation-compose = { group = "androidx.navigation", name = "navigatio
 androidx-navigation-testing = { group = "androidx.navigation", name = "navigation-testing", version.ref = "androidxNavigation" }
 androidx-tracing-ktx = { group = "androidx.tracing", name = "tracing-ktx", version.ref = "androidxTracing" }
 coil-kt = { group = "io.coil-kt", name = "coil", version.ref = "coil" }
+hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
 hilt-android-testing = { group = "com.google.dagger", name = "hilt-android-testing", version.ref = "hilt" }
 hilt-compiler = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "hilt" }
 hilt-ext-compiler = { group = "androidx.hilt", name = "hilt-compiler", version.ref = "hiltExt" }
@@ -72,6 +73,7 @@ secrets = { id = "com.google.android.libraries.mapsplatform.secrets-gradle-plugi
 amg-randomuser-android-application = { id = "amg.randomuser.android.application", version = "unspecified" }
 amg-randomuser-android-application-compose = { id = "amg.randomuser.android.application.compose", version = "unspecified" }
 amg-randomuser-android-application-jacoco = { id = "amg.randomuser.android.application.jacoco", version = "unspecified" }
+amg-randomuser-android-hilt = { id = "amg.randomuser.android.hilt", version = "unspecified" }
 amg-randomuser-android-library = { id = "amg.randomuser.android.library", version = "unspecified" }
 amg-randomuser-android-library-jacoco = { id = "amg.randomuser.android.library.jacoco", version = "unspecified" }
 amg-randomuser-jvm-library = { id = "amg.randomuser.jvm.library", version = "unspecified" }

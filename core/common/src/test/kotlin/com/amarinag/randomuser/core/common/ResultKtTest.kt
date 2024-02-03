@@ -1,6 +1,8 @@
 package com.amarinag.randomuser.core.common
 
 import app.cash.turbine.test
+import com.amarinag.randomuser.core.common.result.Result
+import com.amarinag.randomuser.core.common.result.asResult
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.test.runTest
 import org.junit.Test
@@ -9,7 +11,7 @@ import kotlin.test.assertEquals
 class ResultKtTest {
 
     @Test
-    fun Result_catches_errors() = runTest {
+    fun result_catches_errors() = runTest {
         flow {
             emit(1)
             throw Exception("Test Done")
