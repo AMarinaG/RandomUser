@@ -6,6 +6,7 @@ androidxComposeBom = "2024.01.00"
 androidxComposeCompiler = "1.5.7"
 androidxCore = "1.12.0"
 androidxCoreSplashscreen = "1.0.1"
+androidxHiltNavigationCompose = "1.1.0"
 androidxLifecycle = "2.7.0"
 androidxNavigation = "2.7.6"
 androidxTracing = "1.2.0"
@@ -38,7 +39,9 @@ androidx-compose-ui-tooling-preview = { group = "androidx.compose.ui", name = "u
 androidx-compose-ui-util = { group = "androidx.compose.ui", name = "ui-util" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "androidxCore" }
 androidx-core-splashscreen = { group = "androidx.core", name = "core-splashscreen", version.ref = "androidxCoreSplashscreen" }
+androidx-hilt-navigation-compose = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "androidxHiltNavigationCompose" }
 androidx-lifecycle-runtimeCompose = { group = "androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "androidxLifecycle" }
+androidx-lifecycle-viewModelCompose = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-compose", version.ref = "androidxLifecycle" }
 androidx-navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "androidxNavigation" }
 androidx-navigation-testing = { group = "androidx.navigation", name = "navigation-testing", version.ref = "androidxNavigation" }
 androidx-tracing-ktx = { group = "androidx.tracing", name = "tracing-ktx", version.ref = "androidxTracing" }
@@ -75,6 +78,7 @@ secrets = { id = "com.google.android.libraries.mapsplatform.secrets-gradle-plugi
 amg-randomuser-android-application = { id = "amg.randomuser.android.application", version = "unspecified" }
 amg-randomuser-android-application-compose = { id = "amg.randomuser.android.application.compose", version = "unspecified" }
 amg-randomuser-android-application-jacoco = { id = "amg.randomuser.android.application.jacoco", version = "unspecified" }
+amg-randomuser-android-feature = { id = "amg.randomuser.android.feature", version = "unspecified" }
 amg-randomuser-android-hilt = { id = "amg.randomuser.android.hilt", version = "unspecified" }
 amg-randomuser-android-library = { id = "amg.randomuser.android.library", version = "unspecified" }
 amg-randomuser-android-library-compose = { id = "amg.randomuser.android.library.compose", version = "unspecified" }

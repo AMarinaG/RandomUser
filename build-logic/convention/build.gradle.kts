@@ -56,6 +56,10 @@ gradlePlugin {
             id = "amg.randomuser.android.library"
             implementationClass = "AndroidLibraryConventionPlugin"
         }
+        register("androidFeature") {
+            id = "amg.randomuser.android.feature"
+            implementationClass = "AndroidFeatureConventionPlugin"
+        }
         register("jvmLibrary") {
             id = "amg.randomuser.jvm.library"
             implementationClass = "JvmLibraryConventionPlugin"
