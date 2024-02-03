@@ -31,6 +31,7 @@ androidx-compose-foundation-layout = { group = "androidx.compose.foundation", na
 androidx-compose-material3 = { group = "androidx.compose.material3", name = "material3" }
 androidx-compose-material3-windowSizeClass = { group = "androidx.compose.material3", name = "material3-window-size-class" }
 androidx-compose-runtime = { group = "androidx.compose.runtime", name = "runtime" }
+androidx-compose-ui-test = { group = "androidx.compose.ui", name = "ui-test-junit4" }
 androidx-compose-ui-testManifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
 androidx-compose-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
 androidx-compose-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
@@ -42,6 +43,7 @@ androidx-navigation-compose = { group = "androidx.navigation", name = "navigatio
 androidx-navigation-testing = { group = "androidx.navigation", name = "navigation-testing", version.ref = "androidxNavigation" }
 androidx-tracing-ktx = { group = "androidx.tracing", name = "tracing-ktx", version.ref = "androidxTracing" }
 coil-kt = { group = "io.coil-kt", name = "coil", version.ref = "coil" }
+coil-kt-compose = { group = "io.coil-kt", name = "coil-compose", version.ref = "coil" }
 hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
 hilt-android-testing = { group = "com.google.dagger", name = "hilt-android-testing", version.ref = "hilt" }
 hilt-compiler = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "hilt" }
@@ -75,5 +77,6 @@ amg-randomuser-android-application-compose = { id = "amg.randomuser.android.appl
 amg-randomuser-android-application-jacoco = { id = "amg.randomuser.android.application.jacoco", version = "unspecified" }
 amg-randomuser-android-hilt = { id = "amg.randomuser.android.hilt", version = "unspecified" }
 amg-randomuser-android-library = { id = "amg.randomuser.android.library", version = "unspecified" }
+amg-randomuser-android-library-compose = { id = "amg.randomuser.android.library.compose", version = "unspecified" }
 amg-randomuser-android-library-jacoco = { id = "amg.randomuser.android.library.jacoco", version = "unspecified" }
 amg-randomuser-jvm-library = { id = "amg.randomuser.jvm.library", version = "unspecified" }
