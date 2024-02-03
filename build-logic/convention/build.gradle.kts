@@ -28,17 +28,25 @@ dependencies {
 
 gradlePlugin {
     plugins {
-        register("androidApplicationCompose") {
-            id = "amg.randomuser.android.application.compose"
-            implementationClass = "AndroidApplicationComposeConventionPlugin"
-        }
         register("androidApplication") {
             id = "amg.randomuser.android.application"
             implementationClass = "AndroidApplicationConventionPlugin"
         }
+        register("androidApplicationCompose") {
+            id = "amg.randomuser.android.application.compose"
+            implementationClass = "AndroidApplicationComposeConventionPlugin"
+        }
         register("androidApplicationJacoco") {
             id = "amg.randomuser.android.application.jacoco"
             implementationClass = "AndroidApplicationJacocoConventionPlugin"
+        }
+        register("androidLibraryJacoco") {
+            id = "amg.randomuser.android.library.jacoco"
+            implementationClass = "AndroidLibraryJacocoConventionPlugin"
+        }
+        register("androidLibrary") {
+            id = "amg.randomuser.android.library"
+            implementationClass = "AndroidLibraryConventionPlugin"
         }
         register("jvmLibrary") {
             id = "amg.randomuser.jvm.library"

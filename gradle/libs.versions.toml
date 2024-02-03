@@ -3,6 +3,7 @@ androidGradlePlugin = "8.2.2"
 androidTools = "31.2.2"
 androidxComposeBom = "2024.01.00"
 androidxComposeCompiler = "1.5.7"
+kotlinxCoroutines = "1.7.3"
 kotlin = "1.9.21"
 core-ktx = "1.12.0"
 junit = "4.13.2"
@@ -15,14 +16,18 @@ secrets = "2.0.1"
 ksp = "1.9.21-1.0.16"
 hilt = "2.50"
 jacoco = "0.8.7"
+turbine = "1.0.0"
 
 truth = "1.1.5"
+appcompat = "1.6.1"
+material = "1.9.0"
 
 
 
 [libraries]
 core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "core-ktx" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
+kotlinx-coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "kotlinxCoroutines" }
 androidx-test-ext-junit = { group = "androidx.test.ext", name = "junit", version.ref = "androidx-test-ext-junit" }
 espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espresso-core" }
 lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycle-runtime-ktx" }
@@ -38,12 +43,15 @@ ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
 material3 = { group = "androidx.compose.material3", name = "material3" }
 
 truth = { group = "com.google.truth", name = "truth", version.ref = "truth" }
+turbine = { group = "app.cash.turbine", name = "turbine", version.ref = "turbine" }
 
 # Dependencies of the included build-logic
 android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "androidGradlePlugin" }
 android-tools-common = { group = "com.android.tools", name = "common", version.ref = "androidTools" }
 kotlin-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
 ksp-gradlePlugin = { group = "com.google.devtools.ksp", name = "com.google.devtools.ksp.gradle.plugin", version.ref = "ksp" }
+appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 
 
 [plugins]
@@ -63,4 +71,6 @@ secrets = { id = "com.google.android.libraries.mapsplatform.secrets-gradle-plugi
 amg-randomuser-android-application = { id = "amg.randomuser.android.application", version = "unspecified" }
 amg-randomuser-android-application-compose = { id = "amg.randomuser.android.application.compose", version = "unspecified" }
 amg-randomuser-android-application-jacoco = { id = "amg.randomuser.android.application.jacoco", version = "unspecified" }
+amg-randomuser-android-library = { id = "amg.randomuser.android.library", version = "unspecified" }
+amg-randomuser-android-library-jacoco = { id = "amg.randomuser.android.library.jacoco", version = "unspecified" }
 amg-randomuser-jvm-library = { id = "amg.randomuser.jvm.library", version = "unspecified" }
