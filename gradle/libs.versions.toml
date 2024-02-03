@@ -1,6 +1,8 @@
 [versions]
 androidGradlePlugin = "8.2.2"
 androidTools = "31.2.2"
+androidxComposeBom = "2024.01.00"
+androidxComposeCompiler = "1.5.7"
 kotlin = "1.9.21"
 core-ktx = "1.12.0"
 junit = "4.13.2"
@@ -24,6 +26,7 @@ androidx-test-ext-junit = { group = "androidx.test.ext", name = "junit", version
 espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espresso-core" }
 lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycle-runtime-ktx" }
 activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activity-compose" }
+androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "androidxComposeBom" }
 compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "compose-bom" }
 ui = { group = "androidx.compose.ui", name = "ui" }
 ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics" }
@@ -57,3 +60,4 @@ secrets = { id = "com.google.android.libraries.mapsplatform.secrets-gradle-plugi
 
 # Plugins defined by this project
 amg-randomuser-android-application = { id = "amg.randomuser.android.application", version = "unspecified" }
+amg-randomuser-android-application-compose = { id = "amg.randomuser.android.application.compose", version = "unspecified" }

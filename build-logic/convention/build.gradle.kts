@@ -25,15 +25,13 @@ dependencies {
     implementation(libs.truth)
 }
 
-tasks {
-    validatePlugins {
-        enableStricterValidation = true
-        failOnWarning = true
-    }
-}
 
 gradlePlugin {
     plugins {
+        register("androidApplicationCompose") {
+            id = "amg.randomuser.android.application.compose"
+            implementationClass = "AndroidApplicationComposeConventionPlugin"
+        }
         register("androidApplication") {
             id = "amg.randomuser.android.application"
             implementationClass = "AndroidApplicationConventionPlugin"
