@@ -7,6 +7,9 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.amarinag.randomuser.feature.users.UsersState.Error
+import com.amarinag.randomuser.feature.users.UsersState.Loading
+import com.amarinag.randomuser.feature.users.UsersState.Users
 
 @Composable
 internal fun UsersRouter(
@@ -29,6 +32,10 @@ internal fun UsersScreen(
     modifier: Modifier = Modifier
 ) {
     Column(modifier = modifier) {
-        Text(text = "hola")
+        when (uiState) {
+            Error -> Text(text = "Error")
+            Loading -> Text(text = "Loading")
+            is Users -> Text(text = uiState.users.map { it.phone }.toString())
+        }
     }
 }

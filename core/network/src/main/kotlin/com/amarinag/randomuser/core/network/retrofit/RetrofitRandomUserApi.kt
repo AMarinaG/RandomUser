@@ -5,9 +5,8 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface RetrofitRandomUserApi {
-    @GET
+    @GET("api/")
     suspend fun getUsers(
-        @Query("seed") seed: String? = null,
         @Query("results") results: Int = 10
     ): NetworkResponse
 }

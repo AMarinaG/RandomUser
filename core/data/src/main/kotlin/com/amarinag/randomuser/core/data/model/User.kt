@@ -3,7 +3,6 @@ package com.amarinag.randomuser.core.data.model
 import com.amarinag.randomuser.core.model.User
 import com.amarinag.randomuser.core.model.UserCoordinates
 import com.amarinag.randomuser.core.model.UserDob
-import com.amarinag.randomuser.core.model.UserId
 import com.amarinag.randomuser.core.model.UserLocation
 import com.amarinag.randomuser.core.model.UserName
 import com.amarinag.randomuser.core.model.UserPicture
@@ -11,7 +10,6 @@ import com.amarinag.randomuser.core.model.UserStreet
 import com.amarinag.randomuser.core.model.UserTimezone
 import com.amarinag.randomuser.core.network.model.NetworkCoordinates
 import com.amarinag.randomuser.core.network.model.NetworkDob
-import com.amarinag.randomuser.core.network.model.NetworkId
 import com.amarinag.randomuser.core.network.model.NetworkLocation
 import com.amarinag.randomuser.core.network.model.NetworkName
 import com.amarinag.randomuser.core.network.model.NetworkPicture
@@ -24,7 +22,6 @@ fun NetworkUser.asDomain(): User = User(
     dob = dob.asDomain(),
     email = email,
     gender = gender,
-    id = id.asDomain(),
     location = location.asDomain(),
     name = name.asDomain(),
     nat = nat,
@@ -38,15 +35,10 @@ internal fun NetworkDob.asDomain(): UserDob = UserDob(
     age = age, date = date
 )
 
-internal fun NetworkId.asDomain(): UserId = UserId(
-    name = name, value = value
-)
-
 internal fun NetworkLocation.asDomain(): UserLocation = UserLocation(
     city = city,
     coordinates = coordinates.asDomain(),
     country = country,
-    postcode = postcode,
     state = state,
     street = street.asDomain(),
     timezone = timezone.asDomain(),

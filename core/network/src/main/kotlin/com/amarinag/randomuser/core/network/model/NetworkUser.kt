@@ -14,8 +14,6 @@ data class NetworkUser(
     val email: String,
     @SerialName("gender")
     val gender: String,
-    @SerialName("id")
-    val id: NetworkId,
     @SerialName("location")
     val location: NetworkLocation,
     @SerialName("login")
