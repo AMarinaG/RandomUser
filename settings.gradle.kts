@@ -1,4 +1,5 @@
 pluginManagement {
+    includeBuild("build-logic")
     repositories {
         google()
         mavenCentral()
@@ -14,4 +15,9 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "RandomUser"
+
 include(":app")
+include(":core:model")
+include(":core:common")
+include(":core:designsystem")
+include(":feature:users")
