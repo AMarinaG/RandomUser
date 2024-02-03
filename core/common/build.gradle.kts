@@ -1,7 +1,6 @@
 plugins {
     alias(libs.plugins.amg.randomuser.android.library)
     alias(libs.plugins.amg.randomuser.android.library.jacoco)
-    alias(libs.plugins.kotlinAndroid)
 }
 
 android {
