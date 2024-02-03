@@ -14,6 +14,7 @@ compose-bom = "2024.01.00"
 secrets = "2.0.1"
 ksp = "1.9.21-1.0.16"
 hilt = "2.50"
+jacoco = "0.8.7"
 
 truth = "1.1.5"
 
@@ -61,3 +62,4 @@ secrets = { id = "com.google.android.libraries.mapsplatform.secrets-gradle-plugi
 # Plugins defined by this project
 amg-randomuser-android-application = { id = "amg.randomuser.android.application", version = "unspecified" }
 amg-randomuser-android-application-compose = { id = "amg.randomuser.android.application.compose", version = "unspecified" }
+amg-randomuser-android-application-jacoco = { id = "amg.randomuser.android.application.jacoco", version = "unspecified" }

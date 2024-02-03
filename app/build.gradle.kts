@@ -2,6 +2,8 @@
 plugins {
     alias(libs.plugins.amg.randomuser.android.application)
     alias(libs.plugins.amg.randomuser.android.application.compose)
+    alias(libs.plugins.amg.randomuser.android.application.jacoco)
+    id("jacoco")
 
 }
 

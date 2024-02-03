@@ -36,6 +36,10 @@ gradlePlugin {
             id = "amg.randomuser.android.application"
             implementationClass = "AndroidApplicationConventionPlugin"
         }
+        register("androidApplicationJacoco") {
+            id = "amg.randomuser.android.application.jacoco"
+            implementationClass = "AndroidApplicationJacocoConventionPlugin"
+        }
 
     }
 }
