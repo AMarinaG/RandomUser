@@ -19,6 +19,9 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -42,6 +45,7 @@ internal fun UsersRouter(
         uiState = uiState,
         onUserClick = onUserClick,
         loadMoreUsers = { viewModel.getUsers(true) },
+        queryFilter = viewModel::queryFilter,
         modifier = modifier
     )
 }
@@ -51,12 +55,26 @@ internal fun UsersScreen(
     uiState: UsersState,
     onUserClick: (String) -> Unit,
     loadMoreUsers: () -> Unit,
+    queryFilter: (String) -> Unit,
     modifier: Modifier = Modifier
 ) {
+    var query by remember { mutableStateOf("") }
+    var isSearchActive by remember { mutableStateOf(false) }
     Scaffold(
         modifier = modifier,
         topBar = {
-            RandomTopAppBar(R.string.feature_users_contacts) {}
+            RandomTopAppBar(
+                R.string.feature_users_contacts,
+                query = query,
+                isSearchActive = isSearchActive,
+                onSearch = queryFilter,
+                onActiveChange = { isSearchActive = it },
+                onQueryChange = {
+                    query = it
+                    queryFilter(it)
+                },
+                onSearchClick = { isSearchActive = !isSearchActive }
+            )
         }) { padding ->
         Column(
             modifier = modifier
@@ -76,6 +94,7 @@ internal fun UsersScreen(
                     onUserClick = onUserClick,
                     loadMoreUsers = loadMoreUsers,
                     isLoadingMore = uiState.isLoadMore,
+                    isFilteredList = uiState.filteredList,
                     modifier = modifier
                 )
             }
@@ -87,13 +106,14 @@ internal fun UsersScreen(
 fun UsersList(
     users: List<User>,
     isLoadingMore: Boolean,
+    isFilteredList: Boolean,
     onUserClick: (String) -> Unit,
     loadMoreUsers: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     val scrollState = rememberLazyListState()
     LaunchedEffect(scrollState.canScrollForward) {
-        if (!scrollState.canScrollForward && !isLoadingMore) {
+        if (!scrollState.canScrollForward && !isLoadingMore && !isFilteredList) {
             loadMoreUsers()
         }
     }
@@ -106,15 +126,17 @@ fun UsersList(
                 onItemClick = onUserClick
             )
         }
-        item {
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.Center,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(16.dp)
-            ) {
-                Text(text = "Loading")
+        if (!isFilteredList) {
+            item {
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.Center,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(16.dp)
+                ) {
+                    Text(text = "Loading")
+                }
             }
         }
     }

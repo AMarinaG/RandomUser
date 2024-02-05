@@ -1,16 +1,19 @@
 package com.amarinag.randomuser.core.designsystem.component
 
 import androidx.annotation.StringRes
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.Icons.Outlined
 import androidx.compose.material.icons.filled.Search
+import androidx.compose.material.icons.outlined.Clear
 import androidx.compose.material.icons.outlined.Edit
+import androidx.compose.material3.DockedSearchBar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -28,12 +31,43 @@ import coil.compose.AsyncImage
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun RandomTopAppBar(@StringRes titleId: Int, onSearchClick: () -> Unit) {
+fun RandomTopAppBar(
+    @StringRes titleId: Int, onSearchClick: () -> Unit,
+    query: String,
+    onQueryChange: (String) -> Unit,
+    onSearch: (String) -> Unit,
+    isSearchActive: Boolean,
+    onActiveChange: (Boolean) -> Unit
+) {
     TopAppBar(title = { Text(text = stringResource(id = titleId)) }, actions = {
         IconButton(onClick = onSearchClick) {
             Icon(imageVector = Icons.Default.Search, contentDescription = null)
         }
     })
+    AnimatedVisibility(visible = isSearchActive) {
+        DockedSearchBar(
+            query = query,
+            onQueryChange = onQueryChange,
+            onSearch = onSearch,
+            active = isSearchActive,
+            onActiveChange = onActiveChange,
+            placeholder = { Text(text = "Buscar") },
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(56.dp),
+            trailingIcon = {
+                IconButton(onClick = {
+                    if (query.isEmpty()) {
+                        onActiveChange(false)
+                    }
+                    onQueryChange("")
+                }) {
+                    Icon(imageVector = Icons.Outlined.Clear, contentDescription = null)
+                }
+            }
+        ) {
+        }
+    }
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -63,7 +97,7 @@ fun RandomLargeTopAppBar(
         },
         actions = {
             IconButton(onClick = { }) {
-                Icon(imageVector = Outlined.Edit, contentDescription = null)
+                Icon(imageVector = Icons.Outlined.Edit, contentDescription = null)
             }
         },
         scrollBehavior = scrollBehavior

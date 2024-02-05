@@ -6,5 +6,6 @@ data class UsersState(
     val users: List<User>? = null,
     val isLoading: Boolean = false,
     val isLoadMore: Boolean = false,
+    val filteredList: Boolean = false,
     val error: Boolean = false
 )
