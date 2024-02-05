@@ -6,6 +6,7 @@ import com.amarinag.randomuser.core.model.UserDob
 import com.amarinag.randomuser.core.model.UserLocation
 import com.amarinag.randomuser.core.model.UserName
 import com.amarinag.randomuser.core.model.UserPicture
+import com.amarinag.randomuser.core.model.UserRegistered
 import com.amarinag.randomuser.core.model.UserStreet
 import com.amarinag.randomuser.core.model.UserTimezone
 import com.amarinag.randomuser.core.network.model.NetworkCoordinates
@@ -13,6 +14,7 @@ import com.amarinag.randomuser.core.network.model.NetworkDob
 import com.amarinag.randomuser.core.network.model.NetworkLocation
 import com.amarinag.randomuser.core.network.model.NetworkName
 import com.amarinag.randomuser.core.network.model.NetworkPicture
+import com.amarinag.randomuser.core.network.model.NetworkRegistered
 import com.amarinag.randomuser.core.network.model.NetworkStreet
 import com.amarinag.randomuser.core.network.model.NetworkTimezone
 import com.amarinag.randomuser.core.network.model.NetworkUser
@@ -27,6 +29,7 @@ fun NetworkUser.asDomain(): User = User(
     nat = nat,
     phone = phone,
     picture = picture.asDomain(),
+    registered = registered.asDomain()
 )
 
 fun List<NetworkUser>.asDomain(): List<User> = map(NetworkUser::asDomain)
@@ -60,3 +63,5 @@ internal fun NetworkStreet.asDomain(): UserStreet = UserStreet(name = name, numb
 internal fun NetworkTimezone.asDomain(): UserTimezone = UserTimezone(
     description = description, offset = offset
 )
+
+internal fun NetworkRegistered.asDomain(): UserRegistered = UserRegistered(age, date)

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="feature_userdetail_detail">Detail</string>
+    <string name="feature_userdetail_fullname">Fullname</string>
+    <string name="feature_userdetail_email" translatable="false">Email</string>
+    <string name="feature_userdetail_gender">Gender</string>
+    <string name="feature_userdetail_registered_date">Registered date</string>
+    <string name="feature_userdetail_phone">Phone</string>
+    <string name="feature_userdetail_address">Address</string>
+</resources>

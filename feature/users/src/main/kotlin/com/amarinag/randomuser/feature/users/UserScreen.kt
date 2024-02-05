@@ -73,7 +73,7 @@ fun UsersList(users: List<User>, onUserClick: (String) -> Unit, modifier: Modifi
     LazyColumn(modifier = modifier) {
         items(users, key = { it.email }) { user ->
             ImageTwoLinesItem(
-                title = "${user.name.first} ${user.name.last}",
+                title = user.name.fullname,
                 subtitle = user.email,
                 imageUrl = user.picture.medium,
                 onItemClick = onUserClick
