@@ -6,6 +6,8 @@ import com.amarinag.randomuser.core.common.result.Result.Error
 import com.amarinag.randomuser.core.common.result.Result.Loading
 import com.amarinag.randomuser.core.common.result.Result.Success
 import com.amarinag.randomuser.core.common.result.asResult
+import com.amarinag.randomuser.core.domain.GetUserFilteredUseCase
+import com.amarinag.randomuser.core.domain.GetUserFilteredUseCase.Params
 import com.amarinag.randomuser.core.domain.GetUsersUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -21,8 +23,29 @@ import javax.inject.Inject
 @OptIn(ExperimentalCoroutinesApi::class)
 @HiltViewModel
 class UsersViewModel @Inject constructor(
-    private val getUsersUseCase: GetUsersUseCase
+    private val getUsersUseCase: GetUsersUseCase,
+    private val getUserFilteredUseCase: GetUserFilteredUseCase
 ) : ViewModel() {
+    fun queryFilter(query: String) {
+        viewModelScope.launch {
+            getUserFilteredUseCase(Params(query = query)).asResult().mapLatest { result ->
+                when (result) {
+                    is Error,
+                    Loading -> {
+                    }
+                    is Success -> _uiState.update {
+                        it.copy(
+                            users = result.data,
+                            isLoading = false,
+                            isLoadMore = false,
+                            filteredList = query.isNotEmpty()
+                        )
+                    }
+                }
+            }.collect()
+        }
+    }
+
     private val _uiState: MutableStateFlow<UsersState> =
         MutableStateFlow(UsersState(null, isLoading = true))
     val uiState: StateFlow<UsersState> = _uiState.asStateFlow()
@@ -44,7 +67,9 @@ class UsersViewModel @Inject constructor(
                         it.copy(
                             users = result.data,
                             isLoading = false,
-                            isLoadMore = false
+                            isLoadMore = false,
+                            filteredList = false
+
                         )
                     }
                 }
