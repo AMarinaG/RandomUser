@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -24,11 +25,11 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.amarinag.randomuser.core.designsystem.component.ImageTwoLinesItem
 import com.amarinag.randomuser.core.designsystem.component.RandomTopAppBar
+import com.amarinag.randomuser.core.designsystem.theme.spacing
 import com.amarinag.randomuser.core.model.User
 
 @Composable
@@ -133,7 +134,7 @@ fun UsersList(
                     horizontalArrangement = Arrangement.Center,
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(16.dp)
+                        .padding(MaterialTheme.spacing.normal)
                 ) {
                     Text(text = "Loading")
                 }
