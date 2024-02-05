@@ -1,28 +1,32 @@
 package com.amarinag.randomuser.feature.users
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.WindowInsetsSides
 import androidx.compose.foundation.layout.consumeWindowInsets
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.only
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.amarinag.randomuser.core.designsystem.component.ImageTwoLinesItem
 import com.amarinag.randomuser.core.designsystem.component.RandomTopAppBar
 import com.amarinag.randomuser.core.model.User
-import com.amarinag.randomuser.feature.users.UsersState.Error
-import com.amarinag.randomuser.feature.users.UsersState.Loading
-import com.amarinag.randomuser.feature.users.UsersState.Users
 
 @Composable
 internal fun UsersRouter(
@@ -31,9 +35,13 @@ internal fun UsersRouter(
     viewModel: UsersViewModel = hiltViewModel()
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+    LaunchedEffect(null) {
+        viewModel.getUsers()
+    }
     UsersScreen(
         uiState = uiState,
         onUserClick = onUserClick,
+        loadMoreUsers = { viewModel.getUsers(true) },
         modifier = modifier
     )
 }
@@ -42,6 +50,7 @@ internal fun UsersRouter(
 internal fun UsersScreen(
     uiState: UsersState,
     onUserClick: (String) -> Unit,
+    loadMoreUsers: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     Scaffold(
@@ -55,12 +64,18 @@ internal fun UsersScreen(
                 .consumeWindowInsets(padding)
                 .windowInsetsPadding(WindowInsets.safeDrawing.only(WindowInsetsSides.Horizontal))
         ) {
-            when (uiState) {
-                Error -> Text(text = "Error")
-                Loading -> Text(text = "Loading")
-                is Users -> UsersList(
+            if (uiState.error) {
+                Text(text = "Error", modifier = Modifier.fillMaxWidth())
+            }
+            if (uiState.isLoading) {
+                Text(text = "Loading")
+            }
+            if (!uiState.users.isNullOrEmpty()) {
+                UsersList(
                     users = uiState.users,
                     onUserClick = onUserClick,
+                    loadMoreUsers = loadMoreUsers,
+                    isLoadingMore = uiState.isLoadMore,
                     modifier = modifier
                 )
             }
@@ -69,8 +84,20 @@ internal fun UsersScreen(
 }
 
 @Composable
-fun UsersList(users: List<User>, onUserClick: (String) -> Unit, modifier: Modifier = Modifier) {
-    LazyColumn(modifier = modifier) {
+fun UsersList(
+    users: List<User>,
+    isLoadingMore: Boolean,
+    onUserClick: (String) -> Unit,
+    loadMoreUsers: () -> Unit,
+    modifier: Modifier = Modifier
+) {
+    val scrollState = rememberLazyListState()
+    LaunchedEffect(scrollState.canScrollForward) {
+        if (!scrollState.canScrollForward && !isLoadingMore) {
+            loadMoreUsers()
+        }
+    }
+    LazyColumn(modifier = modifier, state = scrollState) {
         items(users, key = { it.email }) { user ->
             ImageTwoLinesItem(
                 title = user.name.fullname,
@@ -78,6 +105,17 @@ fun UsersList(users: List<User>, onUserClick: (String) -> Unit, modifier: Modifi
                 imageUrl = user.picture.medium,
                 onItemClick = onUserClick
             )
+        }
+        item {
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.Center,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp)
+            ) {
+                Text(text = "Loading")
+            }
         }
     }
 }
