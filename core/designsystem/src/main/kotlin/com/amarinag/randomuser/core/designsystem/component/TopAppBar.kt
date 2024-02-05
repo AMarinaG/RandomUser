@@ -18,6 +18,7 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.LargeTopAppBar
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarScrollBehavior
@@ -26,8 +27,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
+import com.amarinag.randomuser.core.designsystem.theme.spacing
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -54,7 +55,7 @@ fun RandomTopAppBar(
             placeholder = { Text(text = "Buscar") },
             modifier = Modifier
                 .fillMaxWidth()
-                .height(56.dp),
+                .height(MaterialTheme.spacing.hugest),
             trailingIcon = {
                 IconButton(onClick = {
                     if (query.isEmpty()) {
@@ -89,9 +90,9 @@ fun RandomLargeTopAppBar(
                     contentDescription = null,
                     modifier = Modifier
                         .clip(CircleShape)
-                        .size(if (scrollBehavior.state.collapsedFraction < .5F) 64.dp else 32.dp)
+                        .size(if (scrollBehavior.state.collapsedFraction < .5F) MaterialTheme.spacing.largest * 2 else MaterialTheme.spacing.largest)
                 )
-                Spacer(modifier = Modifier.width(8.dp))
+                Spacer(modifier = Modifier.width(MaterialTheme.spacing.small))
                 Text(text = title)
             }
         },

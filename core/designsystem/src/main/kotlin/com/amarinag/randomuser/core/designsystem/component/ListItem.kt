@@ -18,10 +18,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.text.Placeholder
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
+import com.amarinag.randomuser.core.designsystem.theme.spacing
 
 @Composable
 fun ImageTwoLinesItem(
@@ -36,23 +35,23 @@ fun ImageTwoLinesItem(
         modifier = Modifier
             .fillMaxWidth()
             .clickable(onClick = { onItemClick(id) })
-            .padding(16.dp)
+            .padding(MaterialTheme.spacing.normal)
     ) {
         AsyncImage(
             model = imageUrl,
             contentDescription = null,
             modifier = Modifier
                 .clip(CircleShape)
-                .size(64.dp)
+                .size(MaterialTheme.spacing.hugest + MaterialTheme.spacing.small)
         )
-        Spacer(modifier = Modifier.width(16.dp))
+        Spacer(modifier = Modifier.width(MaterialTheme.spacing.normal))
         Column {
             Text(
                 text = title,
                 style = MaterialTheme.typography.headlineSmall,
                 fontWeight = FontWeight.Bold
             )
-            Spacer(modifier = Modifier.height(8.dp))
+            Spacer(modifier = Modifier.height(MaterialTheme.spacing.small))
             Text(text = subtitle, style = MaterialTheme.typography.titleMedium)
         }
     }
@@ -70,23 +69,23 @@ fun IconTwoLinesItem(
         verticalAlignment = Alignment.CenterVertically,
         modifier = Modifier
             .fillMaxWidth()
-            .padding(16.dp)
+            .padding(MaterialTheme.spacing.normal)
     ) {
         Icon(
             imageVector = icon,
             contentDescription = iconDescription,
-            modifier = Modifier.size(32.dp)
+            modifier = Modifier.size(MaterialTheme.spacing.largest)
         )
         Spacer(
             modifier =
-            Modifier.width(16.dp)
+            Modifier.width(MaterialTheme.spacing.normal)
         )
         Column {
             Text(
                 text = title,
                 style = MaterialTheme.typography.bodyMedium
             )
-            Spacer(modifier = Modifier.height(8.dp))
+            Spacer(modifier = Modifier.height(MaterialTheme.spacing.small))
             Text(
                 text = subtitle,
                 style = MaterialTheme.typography.bodyLarge,
