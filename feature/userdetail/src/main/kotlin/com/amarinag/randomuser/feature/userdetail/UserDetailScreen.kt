@@ -38,6 +38,7 @@ import com.amarinag.randomuser.core.designsystem.component.RandomLargeTopAppBar
 import com.amarinag.randomuser.core.designsystem.theme.spacing
 import com.amarinag.randomuser.core.model.User
 import com.amarinag.randomuser.core.model.UserCoordinates
+import com.amarinag.randomuser.core.model.UserRegistered
 import com.amarinag.randomuser.feature.userdetail.R.string
 import com.amarinag.randomuser.feature.userdetail.UserDetailUiState.Error
 import com.amarinag.randomuser.feature.userdetail.UserDetailUiState.Loading
@@ -48,6 +49,9 @@ import com.google.maps.android.compose.GoogleMap
 import com.google.maps.android.compose.Marker
 import com.google.maps.android.compose.MarkerState
 import com.google.maps.android.compose.rememberCameraPositionState
+import kotlinx.datetime.TimeZone
+import kotlinx.datetime.toInstant
+import kotlinx.datetime.toLocalDateTime
 
 @Composable
 internal fun UserDetailRoute(
@@ -115,7 +119,7 @@ fun UserDetail(user: User) {
     Divider()
     IconTwoLinesItem(
         title = stringResource(R.string.feature_userdetail_registered_date),
-        subtitle = user.registered.date,
+        subtitle = user.registered.toHumanDate(),
         icon = Icons.Outlined.DateRange
     )
     Divider()
@@ -156,3 +160,5 @@ fun UserDetail(user: User) {
 }
 
 private fun UserCoordinates.latlong() = LatLng(this.latitude.toDouble(), longitude.toDouble())
+private fun UserRegistered.toHumanDate() =
+    date.toInstant().toLocalDateTime(TimeZone.UTC).date.toString()
