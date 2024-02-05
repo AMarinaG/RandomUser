@@ -23,7 +23,6 @@ class OnlineUserRepository @Inject constructor(
         currentPage = currentPage.plus(1)
         val response = network.getUsers(currentPage, seed)
         seed = response.info.seed
-        Log.d("AMG", "getUsers: seed >> $seed")
         users.addAll(response.users.asDomain())
         emit(users)
     }
