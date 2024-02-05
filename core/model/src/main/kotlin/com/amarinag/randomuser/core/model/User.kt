@@ -10,4 +10,5 @@ data class User(
     val nat: String,
     val phone: String,
     val picture: UserPicture,
+    val registered: UserRegistered
 )

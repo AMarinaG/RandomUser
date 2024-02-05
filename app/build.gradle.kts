@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.amg.randomuser.android.application.compose)
     alias(libs.plugins.amg.randomuser.android.application.jacoco)
     alias(libs.plugins.amg.randomuser.android.hilt)
+    alias(libs.plugins.secrets)
     id("jacoco")
 
 
@@ -41,6 +42,7 @@ dependencies {
 
 
     implementation(project(":feature:users"))
+    implementation(project(":feature:userdetail"))
 
 //    implementation(libs.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)

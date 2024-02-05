@@ -25,5 +25,6 @@ internal class RetrofitRandomUserNetwork @Inject constructor(
         .build()
         .create(RetrofitRandomUserApi::class.java)
 
-    override suspend fun getUsers(page: Int): NetworkResponse = networkApi.getUsers()
+    override suspend fun getUsers(page: Int, seed: String?): NetworkResponse =
+        networkApi.getUsers(page, seed)
 }

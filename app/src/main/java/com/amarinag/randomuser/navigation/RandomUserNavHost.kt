@@ -4,6 +4,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
+import com.amarinag.randomuser.feature.userdetail.navigation.navigateToUserDetail
+import com.amarinag.randomuser.feature.userdetail.navigation.userDetailScreen
 import com.amarinag.randomuser.feature.users.navigation.USERS_ROUTE
 import com.amarinag.randomuser.feature.users.navigation.usersScreen
 
@@ -17,7 +19,8 @@ fun RandomUserNavHost(
         startDestination = USERS_ROUTE,
         modifier = modifier
     ) {
-        usersScreen(onUserClick = {})
+        usersScreen(onUserClick = { navController.navigateToUserDetail(it) })
+        userDetailScreen()
 
     }
 }

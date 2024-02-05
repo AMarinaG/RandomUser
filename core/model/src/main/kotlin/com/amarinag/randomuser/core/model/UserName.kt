@@ -4,4 +4,6 @@ data class UserName(
     val first: String,
     val last: String,
     val title: String
-)
+) {
+    val fullname = "$first $last"
+}
