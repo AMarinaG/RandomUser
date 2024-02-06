@@ -65,6 +65,7 @@ dependencies {
     testImplementation(project(":core:testing"))
     testImplementation(libs.hilt.android.testing)
 
+    androidTestImplementation(project(":feature:users"))
     androidTestImplementation(project(":core:testing"))
     androidTestImplementation(libs.androidx.navigation.testing)
     androidTestImplementation(libs.hilt.android.testing)

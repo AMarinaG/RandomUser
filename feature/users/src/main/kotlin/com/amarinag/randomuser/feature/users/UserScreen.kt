@@ -25,6 +25,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -33,6 +34,7 @@ import com.amarinag.randomuser.core.designsystem.component.RandomTopAppBar
 import com.amarinag.randomuser.core.designsystem.theme.spacing
 import com.amarinag.randomuser.core.model.User
 
+const val UserListTestTag = "UserListTestTag"
 @Composable
 internal fun UsersRouter(
     onUserClick: (String) -> Unit,
@@ -122,7 +124,7 @@ fun UsersList(
             loadMoreUsers()
         }
     }
-    LazyColumn(modifier = modifier, state = scrollState) {
+    LazyColumn(modifier = modifier.testTag(UserListTestTag), state = scrollState) {
         items(users, key = { it.email }) { user ->
             ImageTwoLinesItem(
                 title = user.name.fullname,

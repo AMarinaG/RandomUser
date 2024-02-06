@@ -30,6 +30,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -53,6 +54,7 @@ import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toInstant
 import kotlinx.datetime.toLocalDateTime
 
+const val UserInfoTestTag = "UserInfoTestTag"
 @Composable
 internal fun UserDetailRoute(
     viewModel: UserDetailViewModel = hiltViewModel()
@@ -82,6 +84,7 @@ fun UserDetailScreen(
             }) { padding ->
             Column(
                 modifier = modifier
+                    .testTag(UserInfoTestTag)
                     .padding(padding)
                     .padding(MaterialTheme.spacing.normal)
                     .verticalScroll(rememberScrollState())
