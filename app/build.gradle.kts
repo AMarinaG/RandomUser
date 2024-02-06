@@ -33,6 +33,8 @@ android {
     packaging {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
+            excludes += "/META-INF/LICENSE.md"
+            excludes += "/META-INF/LICENSE-notice.md"
         }
     }
 }
@@ -60,8 +62,10 @@ dependencies {
 
     kspTest(libs.hilt.compiler)
 
+    testImplementation(project(":core:testing"))
     testImplementation(libs.hilt.android.testing)
 
+    androidTestImplementation(project(":core:testing"))
     androidTestImplementation(libs.androidx.navigation.testing)
     androidTestImplementation(libs.hilt.android.testing)
 
