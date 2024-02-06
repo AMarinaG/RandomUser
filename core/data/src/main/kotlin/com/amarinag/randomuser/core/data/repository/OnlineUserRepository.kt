@@ -1,5 +1,6 @@
 package com.amarinag.randomuser.core.data.repository
 
+import androidx.annotation.VisibleForTesting
 import com.amarinag.randomuser.core.data.model.asDomain
 import com.amarinag.randomuser.core.model.User
 import com.amarinag.randomuser.core.network.RandomUserDataSource
@@ -15,10 +16,14 @@ private const val INITIAL_PAGE = 0
 class OnlineUserRepository @Inject constructor(
     private val network: RandomUserDataSource
 ) : UserRepository {
-    private var seed: String? = null
-    private var currentPage: Int = INITIAL_PAGE
-    private var lastQuery: String = ""
-    private val users: MutableList<User> = mutableListOf()
+    @VisibleForTesting
+    var seed: String? = null
+    @VisibleForTesting
+    var currentPage: Int = INITIAL_PAGE
+    @VisibleForTesting
+    var lastQuery: String? = ""
+    @VisibleForTesting
+    val users: MutableList<User> = mutableListOf()
     override fun getUsers(query: String?): Flow<List<User>> = flow {
         if (query.isNullOrEmpty() || query == lastQuery) {
             currentPage = currentPage.plus(1)

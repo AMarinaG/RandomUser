@@ -9,6 +9,16 @@ import com.amarinag.randomuser.core.model.UserPicture
 import com.amarinag.randomuser.core.model.UserRegistered
 import com.amarinag.randomuser.core.model.UserStreet
 import com.amarinag.randomuser.core.model.UserTimezone
+import com.amarinag.randomuser.core.network.model.NetworkCoordinates
+import com.amarinag.randomuser.core.network.model.NetworkDob
+import com.amarinag.randomuser.core.network.model.NetworkLocation
+import com.amarinag.randomuser.core.network.model.NetworkLogin
+import com.amarinag.randomuser.core.network.model.NetworkName
+import com.amarinag.randomuser.core.network.model.NetworkPicture
+import com.amarinag.randomuser.core.network.model.NetworkRegistered
+import com.amarinag.randomuser.core.network.model.NetworkStreet
+import com.amarinag.randomuser.core.network.model.NetworkTimezone
+import com.amarinag.randomuser.core.network.model.NetworkUser
 
 val userTestData = listOf<User>(
     User(
@@ -283,5 +293,379 @@ val userTestData = listOf<User>(
             thumbnail = "https://randomuser.me/api/portraits/thumb/men/90.jpg"
         ),
         nat = "US"
+    )
+)
+val networkUserTestData = listOf<NetworkUser>(
+    NetworkUser(
+        gender = "male",
+        name = NetworkName(title = "Mr", first = "Janique", last = "Costa"),
+        location = NetworkLocation(
+            street = NetworkStreet(number = 8364, name = "Rua Belo Horizonte "),
+            city = "Araraquara",
+            state = "Rondônia",
+            country = "Brazil",
+            coordinates = NetworkCoordinates(latitude = "-74.5614", longitude = "-150.0978"),
+            timezone = NetworkTimezone(
+                offset = "+1:00",
+                description = "Brussels, Copenhagen, Madrid, Paris"
+            )
+        ),
+        email = "janique.costa@example.com",
+        dob = NetworkDob(date = "1993-12-07T16:16:12.770Z", age = 30),
+        registered = NetworkRegistered(date = "2021-10-21T06:06:45.362Z", age = 2),
+        phone = "(84) 5181-4592",
+        cell = "(23) 6323-6609",
+        picture = NetworkPicture(
+            large = "https://randomuser.me/api/portraits/men/42.jpg",
+            medium = "https://randomuser.me/api/portraits/med/men/42.jpg",
+            thumbnail = "https://randomuser.me/api/portraits/thumb/men/42.jpg"
+        ),
+        nat = "BR",
+        login = NetworkLogin(
+            md5 = "3cf3b3979ade126928dc17692b947e42",
+            password = "1991",
+            salt="7c43gaGx",
+            sha1 = "ad1b2b315e0e29c3c4034633af7b0de334005128",
+            sha256 = "dde3736f142c90df4f5329e229f798fbc23002aef1c010b59bc7ebdb9562fdfa",
+            username = "orangecat930",
+            uuid = "70010051-e0ee-4108-9082-e86e531b57fa"
+        )
+    ),
+    NetworkUser(
+        gender = "male",
+        name = NetworkName(title = "Mr", first = "Paul", last = "Martin"),
+        location = NetworkLocation(
+            street = NetworkStreet(number = 3521, name = "George Street"),
+            city = "Wakefield",
+            state = "Berkshire",
+            country = "United Kingdom",
+            coordinates = NetworkCoordinates(latitude = "-9.6209", longitude = "-78.0173"),
+            timezone = NetworkTimezone(offset = "-12:00", description = "Eniwetok, Kwajalein")
+        ),
+        email = "paul.martin@example.com",
+        dob = NetworkDob(date = "1966-07-19T19:32:31.550Z", age = 57),
+        registered = NetworkRegistered(date = "2003-04-02T20:33:03.111Z", age = 20),
+        phone = "016977 96919",
+        cell = "07707 464387",
+        picture = NetworkPicture(
+            large = "https://randomuser.me/api/portraits/men/17.jpg",
+            medium = "https://randomuser.me/api/portraits/med/men/17.jpg",
+            thumbnail = "https://randomuser.me/api/portraits/thumb/men/17.jpg"
+        ),
+        nat = "GB",
+        login = NetworkLogin(
+            md5 = "3cf3b3979ade126928dc17692b947e42",
+            password = "1991",
+            salt="7c43gaGx",
+            sha1 = "ad1b2b315e0e29c3c4034633af7b0de334005128",
+            sha256 = "dde3736f142c90df4f5329e229f798fbc23002aef1c010b59bc7ebdb9562fdfa",
+            username = "orangecat930",
+            uuid = "70010051-e0ee-4108-9082-e86e531b57fa"
+        )
+
+    ),
+    NetworkUser(
+        gender = "female",
+        name = NetworkName(
+            title = "Mrs",
+            first = "Lila",
+            last = "Wegman"
+        ),
+        location = NetworkLocation(
+            street = NetworkStreet(
+                number = 356,
+                name = "Kronenburgplantsoen"
+            ),
+            city = "Veendam",
+            state = "Zeeland",
+            country = "Netherlands",
+            coordinates = NetworkCoordinates(
+                latitude = "37.4599",
+                longitude = "104.0025"
+            ),
+            timezone = NetworkTimezone(
+                offset = "-5:00",
+                description = "Eastern Time (US & Canada), Bogota, Lima"
+            )
+        ),
+        email = "lila.wegman@example.com",
+        dob = NetworkDob(
+            date = "1983-07-13T04:24:44.375Z",
+            age = 40
+        ),
+        registered = NetworkRegistered(
+            date = "2019-07-17T08:59:49.920Z",
+            age = 4
+        ),
+        phone = "(040) 6781871",
+        cell = "(06) 54796829",
+        picture = NetworkPicture(
+            large = "https://randomuser.me/api/portraits/women/76.jpg",
+            medium = "https://randomuser.me/api/portraits/med/women/76.jpg",
+            thumbnail = "https://randomuser.me/api/portraits/thumb/women/76.jpg"
+        ),
+        nat = "NL",
+        login = NetworkLogin(
+            md5 = "3cf3b3979ade126928dc17692b947e42",
+            password = "1991",
+            salt="7c43gaGx",
+            sha1 = "ad1b2b315e0e29c3c4034633af7b0de334005128",
+            sha256 = "dde3736f142c90df4f5329e229f798fbc23002aef1c010b59bc7ebdb9562fdfa",
+            username = "orangecat930",
+            uuid = "70010051-e0ee-4108-9082-e86e531b57fa"
+        )
+
+    ),
+    NetworkUser(
+        gender = "male",
+        name = NetworkName(title = "Mr", first = "Dobrolyub", last = "Kalitovskiy"),
+        location = NetworkLocation(
+            street = NetworkStreet(number = 6416, name = "Puhivska"),
+            city = "Zolochiv",
+            state = "Zakarpatska",
+            country = "Ukraine",
+            coordinates = NetworkCoordinates(latitude = "80.9789", longitude = "-55.8117"),
+            timezone = NetworkTimezone(
+                offset = "-3:00",
+                description = "Brazil, Buenos Aires, Georgetown"
+            )
+        ),
+        email = "dobrolyub.kalitovskiy@example.com",
+        dob = NetworkDob(date = "1982-01-17T09:29:08.878Z", age = 42),
+        registered = NetworkRegistered(date = "2007-11-24T13:53:12.553Z", age = 16),
+        phone = "(098) M96-0751",
+        cell = "(096) R83-2487",
+        picture = NetworkPicture(
+            large = "https://randomuser.me/api/portraits/men/66.jpg",
+            medium = "https://randomuser.me/api/portraits/med/men/66.jpg",
+            thumbnail = "https://randomuser.me/api/portraits/thumb/men/66.jpg"
+        ),
+        nat = "UA",
+        login = NetworkLogin(
+            md5 = "3cf3b3979ade126928dc17692b947e42",
+            password = "1991",
+            salt="7c43gaGx",
+            sha1 = "ad1b2b315e0e29c3c4034633af7b0de334005128",
+            sha256 = "dde3736f142c90df4f5329e229f798fbc23002aef1c010b59bc7ebdb9562fdfa",
+            username = "orangecat930",
+            uuid = "70010051-e0ee-4108-9082-e86e531b57fa"
+        )
+
+    ),
+    NetworkUser(
+        gender = "male",
+        name = NetworkName(title = "Mr", first = "Rayan", last = "Sønsteby"),
+        location = NetworkLocation(
+            street = NetworkStreet(number = 1550, name = "Merkurveien"),
+            city = "Siljan",
+            state = "Oslo",
+            country = "Norway",
+            coordinates = NetworkCoordinates(latitude = "40.7131", longitude = "-18.3357"),
+            timezone = NetworkTimezone(
+                offset = "+2:00",
+                description = "Kaliningrad, South Africa"
+            )
+        ),
+        email = "rayan.sonsteby@example.com",
+        dob = NetworkDob(date = "1952-11-08T13:03:15.270Z", age = 71),
+        registered = NetworkRegistered(date = "2020-12-10T05:53:51.494Z", age = 3),
+        phone = "86833567",
+        cell = "46322639",
+        picture = NetworkPicture(
+            large = "https://randomuser.me/api/portraits/men/96.jpg",
+            medium = "https://randomuser.me/api/portraits/med/men/96.jpg",
+            thumbnail = "https://randomuser.me/api/portraits/thumb/men/96.jpg"
+        ),
+        nat = "NO",
+        login = NetworkLogin(
+            md5 = "3cf3b3979ade126928dc17692b947e42",
+            password = "1991",
+            salt="7c43gaGx",
+            sha1 = "ad1b2b315e0e29c3c4034633af7b0de334005128",
+            sha256 = "dde3736f142c90df4f5329e229f798fbc23002aef1c010b59bc7ebdb9562fdfa",
+            username = "orangecat930",
+            uuid = "70010051-e0ee-4108-9082-e86e531b57fa"
+        )
+
+    ),
+    NetworkUser(
+        gender = "female",
+        name = NetworkName(title = "Miss", first = "Ashley", last = "Davidson"),
+        location = NetworkLocation(
+            street = NetworkStreet(number = 6435, name = "Main Road"),
+            city = "Leeds",
+            state = "Grampian",
+            country = "United Kingdom",
+            coordinates = NetworkCoordinates(latitude = "-11.3441", longitude = "74.9512"),
+            timezone = NetworkTimezone(
+                offset = "+10:00",
+                description = "Eastern Australia, Guam, Vladivostok"
+            )
+        ),
+        email = "ashley.davidson@example.com",
+        dob = NetworkDob(date = "1950-12-04T11:08:33.318Z", age = 73),
+        registered = NetworkRegistered(date = "2007-12-22T02:09:32.595Z", age = 16),
+        phone = "015394 17323",
+        cell = "07001 090890",
+        picture = NetworkPicture(
+            large = "https://randomuser.me/api/portraits/women/59.jpg",
+            medium = "https://randomuser.me/api/portraits/med/women/59.jpg",
+            thumbnail = "https://randomuser.me/api/portraits/thumb/women/59.jpg"
+        ),
+        nat = "GB",
+        login = NetworkLogin(
+            md5 = "3cf3b3979ade126928dc17692b947e42",
+            password = "1991",
+            salt="7c43gaGx",
+            sha1 = "ad1b2b315e0e29c3c4034633af7b0de334005128",
+            sha256 = "dde3736f142c90df4f5329e229f798fbc23002aef1c010b59bc7ebdb9562fdfa",
+            username = "orangecat930",
+            uuid = "70010051-e0ee-4108-9082-e86e531b57fa"
+        )
+
+    ),
+    NetworkUser(
+        gender = "female",
+        name = NetworkName(title = "Ms", first = "Amanda", last = "Heino"),
+        location = NetworkLocation(
+            street = NetworkStreet(number = 2730, name = "Pispalan Valtatie"),
+            city = "Saarijärvi",
+            state = "Northern Savonia",
+            country = "Finland",
+            coordinates = NetworkCoordinates(latitude = "-27.9601", longitude = "159.3542"),
+            timezone = NetworkTimezone(
+                offset = "+7:00",
+                description = "Bangkok, Hanoi, Jakarta"
+            )
+        ),
+        email = "amanda.heino@example.com",
+        dob = NetworkDob(date = "1968-12-19T11:21:24.819Z", age = 55),
+        registered = NetworkRegistered(date = "2014-10-14T02:06:39.733Z", age = 9),
+        phone = "07-422-188",
+        cell = "045-559-41-60",
+        picture = NetworkPicture(
+            large = "https://randomuser.me/api/portraits/women/90.jpg",
+            medium = "https://randomuser.me/api/portraits/med/women/90.jpg",
+            thumbnail = "https://randomuser.me/api/portraits/thumb/women/90.jpg"
+        ),
+        nat = "FI",
+        login = NetworkLogin(
+            md5 = "3cf3b3979ade126928dc17692b947e42",
+            password = "1991",
+            salt="7c43gaGx",
+            sha1 = "ad1b2b315e0e29c3c4034633af7b0de334005128",
+            sha256 = "dde3736f142c90df4f5329e229f798fbc23002aef1c010b59bc7ebdb9562fdfa",
+            username = "orangecat930",
+            uuid = "70010051-e0ee-4108-9082-e86e531b57fa"
+        )
+
+    ),
+    NetworkUser(
+        gender = "male",
+        name = NetworkName(title = "Mr", first = "Tarjei", last = "Lyngmo"),
+        location = NetworkLocation(
+            street = NetworkStreet(number = 585, name = "Magnus Hydles vei"),
+            city = "Svøo",
+            state = "Nordland",
+            country = "Norway",
+            coordinates = NetworkCoordinates(latitude = "45.9519", longitude = "-159.8303"),
+            timezone = NetworkTimezone(
+                offset = "-12:00",
+                description = "Eniwetok, Kwajalein"
+            )
+        ),
+        email = "tarjei.lyngmo@example.com",
+        dob = NetworkDob(date = "1961-09-08T22:02:54.116Z", age = 62),
+        registered = NetworkRegistered(date = "2018-06-11T18:05:48.807Z", age = 5),
+        phone = "52828605",
+        cell = "42552667",
+        picture = NetworkPicture(
+            large = "https://randomuser.me/api/portraits/men/67.jpg",
+            medium = "https://randomuser.me/api/portraits/med/men/67.jpg",
+            thumbnail = "https://randomuser.me/api/portraits/thumb/men/67.jpg"
+        ),
+        nat = "NO",
+        login = NetworkLogin(
+            md5 = "3cf3b3979ade126928dc17692b947e42",
+            password = "1991",
+            salt="7c43gaGx",
+            sha1 = "ad1b2b315e0e29c3c4034633af7b0de334005128",
+            sha256 = "dde3736f142c90df4f5329e229f798fbc23002aef1c010b59bc7ebdb9562fdfa",
+            username = "orangecat930",
+            uuid = "70010051-e0ee-4108-9082-e86e531b57fa"
+        )
+
+    ),
+    NetworkUser(
+        gender = "female",
+        name = NetworkName(title = "Mrs", first = "Andrea", last = "Subašić"),
+        location = NetworkLocation(
+            street = NetworkStreet(number = 3205, name = "Porodice Marković"),
+            city = "Preševo",
+            state = "Moravica",
+            country = "Serbia",
+            coordinates = NetworkCoordinates(latitude = "56.9660", longitude = "144.4530"),
+            timezone = NetworkTimezone(
+                offset = "+9:00",
+                description = "Tokyo, Seoul, Osaka, Sapporo, Yakutsk"
+            )
+        ),
+        email = "andrea.subasic@example.com",
+        dob = NetworkDob(date = "1948-11-13T10:28:52.774Z", age = 75),
+        registered = NetworkRegistered(date = "2010-11-14T06:34:03.294Z", age = 13),
+        phone = "012-3395-339",
+        cell = "064-4121-119",
+        picture = NetworkPicture(
+            large = "https://randomuser.me/api/portraits/women/45.jpg",
+            medium = "https://randomuser.me/api/portraits/med/women/45.jpg",
+            thumbnail = "https://randomuser.me/api/portraits/thumb/women/45.jpg"
+        ),
+        nat = "RS",
+        login = NetworkLogin(
+            md5 = "3cf3b3979ade126928dc17692b947e42",
+            password = "1991",
+            salt="7c43gaGx",
+            sha1 = "ad1b2b315e0e29c3c4034633af7b0de334005128",
+            sha256 = "dde3736f142c90df4f5329e229f798fbc23002aef1c010b59bc7ebdb9562fdfa",
+            username = "orangecat930",
+            uuid = "70010051-e0ee-4108-9082-e86e531b57fa"
+        )
+
+    ),
+    NetworkUser(
+        gender = "male",
+        name = NetworkName(title = "Mr", first = "Jayden", last = "Andrews"),
+        location = NetworkLocation(
+            street = NetworkStreet(number = 888, name = "Bruce St"),
+            city = "Aurora",
+            state = "Kentucky",
+            country = "United States",
+            coordinates = NetworkCoordinates(latitude = "89.4783", longitude = "-161.7074"),
+            timezone = NetworkTimezone(
+                offset = "-12:00",
+                description = "Eniwetok, Kwajalein"
+            )
+        ),
+        email = "jayden.andrews@example.com",
+        dob = NetworkDob(date = "1975-08-17T21:21:11.372Z", age = 48),
+        registered = NetworkRegistered(date = "2010-11-03T09:19:09.318Z", age = 13),
+        phone = "(421) 734-9649",
+        cell = "(766) 828-8724",
+        picture = NetworkPicture(
+            large = "https://randomuser.me/api/portraits/men/90.jpg",
+            medium = "https://randomuser.me/api/portraits/med/men/90.jpg",
+            thumbnail = "https://randomuser.me/api/portraits/thumb/men/90.jpg"
+        ),
+        nat = "US",
+        login = NetworkLogin(
+            md5 = "3cf3b3979ade126928dc17692b947e42",
+            password = "1991",
+            salt="7c43gaGx",
+            sha1 = "ad1b2b315e0e29c3c4034633af7b0de334005128",
+            sha256 = "dde3736f142c90df4f5329e229f798fbc23002aef1c010b59bc7ebdb9562fdfa",
+            username = "orangecat930",
+            uuid = "70010051-e0ee-4108-9082-e86e531b57fa"
+        )
+
     )
 )
