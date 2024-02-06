@@ -13,6 +13,8 @@ dependencies {
     api(project(":core:data"))
     api(project(":core:model"))
 
+    testImplementation(project(":core:testing"))
+
     implementation(libs.javax.inject)
     implementation(libs.kotlinx.coroutines.guava)
 }
