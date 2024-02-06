@@ -12,4 +12,7 @@ android {
 dependencies {
     implementation(project(":core:domain"))
     implementation(libs.coil.kt.compose)
+
+    testImplementation(project(":core:testing"))
+    androidTestImplementation(project(":core:testing"))
 }

@@ -8,7 +8,9 @@ android {
     namespace = "com.amarinag.randomuser.core.common"
 
 }
-
+reporting {
+    baseDir = File("${rootProject.buildDir.path}/reports/${project.name}")
+}
 dependencies {
     testImplementation(libs.kotlinx.coroutines.test)
     testImplementation(libs.turbine)
