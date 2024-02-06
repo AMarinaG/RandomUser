@@ -25,6 +25,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.amarinag.randomuser.core.designsystem.component.ImageTwoLinesItem
@@ -84,10 +85,13 @@ internal fun UsersScreen(
                 .windowInsetsPadding(WindowInsets.safeDrawing.only(WindowInsetsSides.Horizontal))
         ) {
             if (uiState.error) {
-                Text(text = "Error", modifier = Modifier.fillMaxWidth())
+                Text(
+                    text = stringResource(id = R.string.feature_users_error),
+                    modifier = Modifier.fillMaxWidth()
+                )
             }
             if (uiState.isLoading) {
-                Text(text = "Loading")
+                Text(text = stringResource(id = R.string.feature_users_loading))
             }
             if (!uiState.users.isNullOrEmpty()) {
                 UsersList(

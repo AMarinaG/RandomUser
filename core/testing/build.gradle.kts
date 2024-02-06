@@ -7,6 +7,12 @@ plugins {
 
 android {
     namespace = "com.amarinag.randomuser.core.testing"
+    packaging {
+        resources {
+            excludes += "/META-INF/LICENSE.md"
+            excludes += "/META-INF/LICENSE-notice.md"
+        }
+    }
 }
 
 dependencies {

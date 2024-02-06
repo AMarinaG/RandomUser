@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="feature_users_contacts">Contactos</string>
+    <string name="feature_users_error">Error</string>
+    <string name="feature_users_loading">Cargando...</string>
 </resources>

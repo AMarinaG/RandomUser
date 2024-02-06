@@ -26,10 +26,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import coil.compose.AsyncImage
 import com.amarinag.randomuser.core.designsystem.theme.spacing
+import com.amarinag.randomuser.core.designsytem.R.string
 
+const val SEARCH_ICON_TEST_TAG="search_icon_test_tag"
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun RandomTopAppBar(
@@ -41,7 +44,7 @@ fun RandomTopAppBar(
     onActiveChange: (Boolean) -> Unit
 ) {
     TopAppBar(title = { Text(text = stringResource(id = titleId)) }, actions = {
-        IconButton(onClick = onSearchClick) {
+        IconButton(onClick = onSearchClick, modifier = Modifier.testTag(SEARCH_ICON_TEST_TAG)) {
             Icon(imageVector = Icons.Default.Search, contentDescription = null)
         }
     })
@@ -52,12 +55,12 @@ fun RandomTopAppBar(
             onSearch = onSearch,
             active = isSearchActive,
             onActiveChange = onActiveChange,
-            placeholder = { Text(text = "Buscar") },
+            placeholder = { Text(text = stringResource(string.core_designsystem_search)) },
             modifier = Modifier
                 .fillMaxWidth()
                 .height(MaterialTheme.spacing.hugest),
             trailingIcon = {
-                IconButton(onClick = {
+                IconButton(modifier = Modifier, onClick = {
                     if (query.isEmpty()) {
                         onActiveChange(false)
                     }
