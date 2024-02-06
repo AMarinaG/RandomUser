@@ -12,7 +12,11 @@ class AndroidFeatureConventionPlugin : Plugin<Project> {
                 apply("amg.randomuser.android.library")
                 apply("amg.randomuser.android.hilt")
             }
-
+            extensions.configure<LibraryExtension> {
+                defaultConfig {
+                    testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+                }
+            }
             dependencies {
                 add("implementation", project(":core:designsystem"))
 
@@ -21,6 +25,5 @@ class AndroidFeatureConventionPlugin : Plugin<Project> {
                 add("implementation", libs.findLibrary("androidx.lifecycle.viewModelCompose").get())
             }
         }
-
     }
 }

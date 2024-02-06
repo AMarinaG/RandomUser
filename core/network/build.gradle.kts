@@ -4,7 +4,7 @@ plugins {
     alias(libs.plugins.amg.randomuser.android.library.jacoco)
     alias(libs.plugins.amg.randomuser.android.hilt)
     id("kotlinx-serialization")
-    id("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
+    alias(libs.plugins.secrets)
 }
 
 android {

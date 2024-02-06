@@ -70,8 +70,8 @@ fun UserDetailScreen(
     val scrollBehavior =
         TopAppBarDefaults.exitUntilCollapsedScrollBehavior(rememberTopAppBarState())
     when (uiState) {
-        Error -> Text(text = "Error")
-        Loading -> Text(text = "Loading")
+        Error -> Text(text = stringResource(id = string.feature_userdetail_error))
+        Loading -> Text(text = stringResource(id = string.feature_userdetail_loading))
         is Success -> Scaffold(modifier = modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
             topBar = {
                 RandomLargeTopAppBar(

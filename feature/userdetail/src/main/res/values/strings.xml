@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="feature_userdetail_loading">Loading</string>
+    <string name="feature_userdetail_error">Error</string>
     <string name="feature_userdetail_detail">Detail</string>
     <string name="feature_userdetail_fullname">Fullname</string>
     <string name="feature_userdetail_email" translatable="false">Email</string>
