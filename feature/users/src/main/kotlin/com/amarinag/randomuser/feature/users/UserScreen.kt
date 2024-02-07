@@ -1,8 +1,6 @@
 package com.amarinag.randomuser.feature.users
 
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.WindowInsetsSides
 import androidx.compose.foundation.layout.consumeWindowInsets
@@ -14,7 +12,6 @@ import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -23,18 +20,18 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.amarinag.randomuser.core.designsystem.component.ImageTwoLinesItem
+import com.amarinag.randomuser.core.designsystem.component.ImageTwoLinesItemPlaceholder
 import com.amarinag.randomuser.core.designsystem.component.RandomTopAppBar
-import com.amarinag.randomuser.core.designsystem.theme.spacing
 import com.amarinag.randomuser.core.model.User
 
 const val UserListTestTag = "UserListTestTag"
+
 @Composable
 internal fun UsersRouter(
     onUserClick: (String) -> Unit,
@@ -135,15 +132,7 @@ fun UsersList(
         }
         if (!isFilteredList) {
             item {
-                Row(
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.Center,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(MaterialTheme.spacing.normal)
-                ) {
-                    Text(text = "Loading")
-                }
+                ImageTwoLinesItemPlaceholder()
             }
         }
     }
