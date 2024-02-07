@@ -1,5 +1,7 @@
 <img src="images/logo.png" alt="App Logo"/>
 
+![randomuserhapplyflow.gif](images/randomuserhapplyflow.gif)
+
 # Architecture
 
 The RandomUser app follows Google's architecture design recommendations in [the official guide](https://developer.android.com/topic/architecture) 
