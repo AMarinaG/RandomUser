@@ -1,6 +1,12 @@
 package com.amarinag.randomuser.core.designsystem.component
 
+import androidx.compose.animation.core.animateFloat
+import androidx.compose.animation.core.infiniteRepeatable
+import androidx.compose.animation.core.rememberInfiniteTransition
+import androidx.compose.animation.core.tween
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -14,11 +20,21 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.composed
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.IntSize
 import coil.compose.AsyncImage
 import com.amarinag.randomuser.core.designsystem.theme.spacing
 
@@ -53,6 +69,43 @@ fun ImageTwoLinesItem(
             )
             Spacer(modifier = Modifier.height(MaterialTheme.spacing.small))
             Text(text = subtitle, style = MaterialTheme.typography.titleMedium)
+        }
+    }
+}
+
+@Composable
+@Preview
+fun ImageTwoLinesItemPlaceholder() {
+    Row(
+        verticalAlignment = Alignment.CenterVertically,
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(MaterialTheme.spacing.normal)
+    ) {
+        Box(
+            modifier = Modifier
+                .clip(CircleShape)
+                .size(MaterialTheme.spacing.hugest + MaterialTheme.spacing.small)
+                .background(MaterialTheme.colorScheme.onBackground)
+                .shimmerEffect()
+        )
+        Spacer(modifier = Modifier.width(MaterialTheme.spacing.normal))
+        Column {
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth(0.6F)
+                    .height(MaterialTheme.spacing.normal)
+                    .background(MaterialTheme.colorScheme.onBackground)
+                    .shimmerEffect()
+            )
+            Spacer(modifier = Modifier.height(MaterialTheme.spacing.normal))
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth(0.8F)
+                    .height(MaterialTheme.spacing.normal)
+                    .background(MaterialTheme.colorScheme.onBackground)
+                    .shimmerEffect()
+            )
         }
     }
 }
@@ -93,4 +146,31 @@ fun IconTwoLinesItem(
             )
         }
     }
+}
+
+private fun Modifier.shimmerEffect(): Modifier = composed {
+    var size by remember {
+        mutableStateOf(IntSize.Zero)
+    }
+    val transition = rememberInfiniteTransition(label = "shimmer")
+    val startOffsetX by transition.animateFloat(
+        initialValue = -2 * size.width.toFloat(),
+        targetValue = 2 * size.width.toFloat(),
+        animationSpec = infiniteRepeatable(
+            animation = tween(durationMillis = 1000)
+        ), label = ""
+    )
+    background(
+        brush = Brush.linearGradient(
+            colors = listOf(
+                MaterialTheme.colorScheme.primaryContainer,
+                MaterialTheme.colorScheme.primary,
+            ),
+            start = Offset(startOffsetX, 0F),
+            end = Offset(startOffsetX + size.width.toFloat(), size.height.toFloat())
+        )
+    )
+        .onGloballyPositioned {
+            size = it.size
+        }
 }
