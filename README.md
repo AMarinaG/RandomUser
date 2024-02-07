@@ -66,4 +66,4 @@ can run test with following gradle task
 
 * [**build-logic**](build-logic/README.md)
 * [**Robot Pattern**](feature/users/src/androidTest/kotlin/com/amarinag/randomuser/feature/users)
-* [**Shimmer Animation**](core/designsystem/src/main/kotlin/com/amarinag/randomuser/core/designsystem/component/ListItem.kt#L151)
+* [**Shimmer Animation**](core/designsystem/src/main/kotlin/com/amarinag/randomuser/core/designsystem/component/ListItem.kt#L151-L176)
