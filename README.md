@@ -1,5 +1,7 @@
 <img src="images/logo.png" alt="App Logo"/>
 
+![randomuserhapplyflow.gif](images/randomuserhapplyflow.gif)
+
 # Architecture
 
 The RandomUser app follows Google's architecture design recommendations in [the official guide](https://developer.android.com/topic/architecture) 
@@ -67,5 +69,3 @@ can run test with following gradle task
 * [**build-logic**](build-logic/README.md)
 * [**Robot Pattern**](feature/users/src/androidTest/kotlin/com/amarinag/randomuser/feature/users)
 * [**Shimmer Animation**](core/designsystem/src/main/kotlin/com/amarinag/randomuser/core/designsystem/component/ListItem.kt#L151-L176)
-
-![randomuserhapplyflow.gif](images/randomuserhapplyflow.gif)
