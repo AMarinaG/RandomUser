@@ -8,6 +8,15 @@ import kotlinx.coroutines.test.runTest
 import org.junit.Test
 import kotlin.test.assertEquals
 
+fun main(){
+    val foo by lazy {
+        println("cosas")
+        "Hello"
+    }
+
+    println(foo)
+    println(foo)
+}
 class ResultKtTest {
 
     @Test

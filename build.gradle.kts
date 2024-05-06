@@ -15,6 +15,10 @@ plugins {
     alias(libs.plugins.hilt) apply false
     alias(libs.plugins.ksp) apply false
     alias(libs.plugins.secrets) apply false
+    id("jacoco-report-aggregation")
 }
 true // Needed to make the Suppress annotation work for the plugins block
 
+tasks.register("check") {
+    dependsOn(tasks.named<JacocoReport>("jacocoTestReport"))
+}
