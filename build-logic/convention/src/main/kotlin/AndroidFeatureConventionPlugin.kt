@@ -11,6 +11,8 @@ class AndroidFeatureConventionPlugin : Plugin<Project> {
             pluginManager.apply {
                 apply("amg.randomuser.android.library")
                 apply("amg.randomuser.android.hilt")
+                apply("kotlinx-serialization")
+
             }
             extensions.configure<LibraryExtension> {
                 defaultConfig {
@@ -29,6 +31,7 @@ class AndroidFeatureConventionPlugin : Plugin<Project> {
 
                 add("implementation", libs.findLibrary("androidx.hilt.navigation.compose").get())
                 add("implementation", libs.findLibrary("androidx.navigation.compose").get())
+                add("implementation", libs.findLibrary("kotlinx.serialization.json").get())
                 add("implementation", libs.findLibrary("androidx.lifecycle.runtimeCompose").get())
                 add("implementation", libs.findLibrary("androidx.lifecycle.viewModelCompose").get())
             }

@@ -4,7 +4,6 @@ plugins {
     alias(libs.plugins.amg.randomuser.android.library.compose)
     alias(libs.plugins.amg.randomuser.android.library.jacoco)
     alias(libs.plugins.secrets)
-    id("kotlinx-serialization")
 
 }
 
@@ -16,8 +15,6 @@ dependencies {
     implementation(project(":core:domain"))
     implementation(libs.coil.kt.compose)
     implementation(libs.google.maps.compose)
-    implementation(libs.kotlinx.serialization.json)
-    implementation(libs.androidx.navigation.compose)
 
     testImplementation(project(":core:testing"))
     androidTestImplementation(project(":core:testing"))
