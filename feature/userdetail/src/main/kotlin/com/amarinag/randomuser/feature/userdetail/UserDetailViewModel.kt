@@ -3,13 +3,14 @@ package com.amarinag.randomuser.feature.userdetail
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.navigation.toRoute
 import com.amarinag.randomuser.core.common.result.Result.Error
 import com.amarinag.randomuser.core.common.result.Result.Loading
 import com.amarinag.randomuser.core.common.result.Result.Success
 import com.amarinag.randomuser.core.common.result.asResult
 import com.amarinag.randomuser.core.domain.GetUserDetailUseCase
 import com.amarinag.randomuser.core.domain.GetUserDetailUseCase.Params
-import com.amarinag.randomuser.feature.userdetail.navigation.USER_ID_ARG
+import com.amarinag.randomuser.feature.userdetail.navigation.UserDetailRoute
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.SharingStarted
@@ -24,9 +25,9 @@ class UserDetailViewModel @Inject constructor(
     savedStateHandle: SavedStateHandle,
     getUserDetailUseCase: GetUserDetailUseCase
 ) : ViewModel() {
-    private val email: String = checkNotNull(savedStateHandle[USER_ID_ARG])
+    private val userDetailRoute: UserDetailRoute = savedStateHandle.toRoute()
     val uiState: StateFlow<UserDetailUiState> =
-        getUserDetailUseCase(Params(email))
+        getUserDetailUseCase(Params(userDetailRoute.userId))
             .asResult()
             .mapLatest { result ->
                 when (result) {

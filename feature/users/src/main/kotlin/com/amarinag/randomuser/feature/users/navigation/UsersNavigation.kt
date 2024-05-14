@@ -3,11 +3,13 @@ package com.amarinag.randomuser.feature.users.navigation
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import com.amarinag.randomuser.feature.users.UsersRouter
+import kotlinx.serialization.Serializable
 
-const val USERS_ROUTE = "users_route"
+@Serializable
+object UsersRoute
 
 fun NavGraphBuilder.usersScreen(onUserClick: (String) -> Unit) {
-    composable(route = USERS_ROUTE) {
+    composable<UsersRoute> {
         UsersRouter(onUserClick = onUserClick)
     }
 }
