@@ -10,6 +10,8 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Call
+import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.outlined.Clear
 import androidx.compose.material.icons.outlined.Edit
@@ -32,7 +34,9 @@ import coil.compose.AsyncImage
 import com.amarinag.randomuser.core.designsystem.theme.spacing
 import com.amarinag.randomuser.core.designsytem.R.string
 
-const val SEARCH_ICON_TEST_TAG="search_icon_test_tag"
+const val SEARCH_ICON_TEST_TAG = "search_icon_test_tag"
+const val SHOW_PHONE_ICON_TEST_TAG = "show_phone_icon_test_tag"
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun RandomTopAppBar(
@@ -41,9 +45,20 @@ fun RandomTopAppBar(
     onQueryChange: (String) -> Unit,
     onSearch: (String) -> Unit,
     isSearchActive: Boolean,
-    onActiveChange: (Boolean) -> Unit
+    onActiveChange: (Boolean) -> Unit,
+    showPhone: Boolean,
+    onShowPhoneIcon: (Boolean) -> Unit
 ) {
     TopAppBar(title = { Text(text = stringResource(id = titleId)) }, actions = {
+        IconButton(
+            onClick = { onShowPhoneIcon(!showPhone) },
+            modifier = Modifier.testTag(SHOW_PHONE_ICON_TEST_TAG)
+        ) {
+            Icon(
+                imageVector = if (showPhone) Icons.Default.Menu else Icons.Default.Call,
+                contentDescription = null
+            )
+        }
         IconButton(onClick = onSearchClick, modifier = Modifier.testTag(SEARCH_ICON_TEST_TAG)) {
             Icon(imageVector = Icons.Default.Search, contentDescription = null)
         }

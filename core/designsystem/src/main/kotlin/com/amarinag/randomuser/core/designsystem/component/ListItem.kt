@@ -72,6 +72,44 @@ fun ImageTwoLinesItem(
         }
     }
 }
+@Composable
+fun ImageThreeLinesItem(
+    title: String,
+    subtitle: String,
+    label: String,
+    imageUrl: String,
+    onItemClick: (String) -> Unit,
+    id: String = subtitle
+) {
+    Row(
+        verticalAlignment = Alignment.CenterVertically,
+        modifier = Modifier
+            .fillMaxWidth()
+            .clickable(onClick = { onItemClick(id) })
+            .padding(MaterialTheme.spacing.normal)
+    ) {
+        AsyncImage(
+            model = imageUrl,
+            contentDescription = null,
+            modifier = Modifier
+                .clip(CircleShape)
+                .size(MaterialTheme.spacing.hugest + MaterialTheme.spacing.small)
+        )
+        Spacer(modifier = Modifier.width(MaterialTheme.spacing.normal))
+        Column {
+            Text(
+                text = title,
+                style = MaterialTheme.typography.headlineSmall,
+                fontWeight = FontWeight.Bold
+            )
+            Spacer(modifier = Modifier.height(MaterialTheme.spacing.small))
+            Text(text = subtitle, style = MaterialTheme.typography.titleMedium)
+
+            Spacer(modifier = Modifier.height(MaterialTheme.spacing.small))
+            Text(text = label, style = MaterialTheme.typography.titleMedium)
+        }
+    }
+}
 
 @Composable
 @Preview
@@ -94,6 +132,50 @@ fun ImageTwoLinesItemPlaceholder() {
             Box(
                 modifier = Modifier
                     .fillMaxWidth(0.6F)
+                    .height(MaterialTheme.spacing.normal)
+                    .background(MaterialTheme.colorScheme.onBackground)
+                    .shimmerEffect()
+            )
+            Spacer(modifier = Modifier.height(MaterialTheme.spacing.normal))
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth(0.8F)
+                    .height(MaterialTheme.spacing.normal)
+                    .background(MaterialTheme.colorScheme.onBackground)
+                    .shimmerEffect()
+            )
+        }
+    }
+}
+@Composable
+@Preview
+fun ImageThreeLinesItemPlaceholder() {
+    Row(
+        verticalAlignment = Alignment.CenterVertically,
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(MaterialTheme.spacing.normal)
+    ) {
+        Box(
+            modifier = Modifier
+                .clip(CircleShape)
+                .size(MaterialTheme.spacing.hugest + MaterialTheme.spacing.small)
+                .background(MaterialTheme.colorScheme.onBackground)
+                .shimmerEffect()
+        )
+        Spacer(modifier = Modifier.width(MaterialTheme.spacing.normal))
+        Column {
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth(0.6F)
+                    .height(MaterialTheme.spacing.normal)
+                    .background(MaterialTheme.colorScheme.onBackground)
+                    .shimmerEffect()
+            )
+            Spacer(modifier = Modifier.height(MaterialTheme.spacing.normal))
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth(0.7F)
                     .height(MaterialTheme.spacing.normal)
                     .background(MaterialTheme.colorScheme.onBackground)
                     .shimmerEffect()
