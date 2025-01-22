@@ -7,11 +7,6 @@
 The RandomUser app follows Google's architecture design recommendations in [the official guide](https://developer.android.com/topic/architecture) 
 explained in more detail in the [nowinandroid google app](https://github.com/android/nowinandroid/blob/main/docs/ArchitectureLearningJourney.md)
 
-It is divided into 3 layers
-- [ui](https://developer.android.com/jetpack/guide/ui-layer) - Comprises UI elements built using [Jetpack Compose](https://developer.android.com/jetpack/compose) and [Android ViewModels](https://developer.android.com/topic/libraries/architecture/viewmodel) 
-- [domain](https://developer.android.com/jetpack/guide/domain-layer) - The domain layer contains use cases. These are classes which have a single invocable method `(operator fun invoke)` containing business logic.
-- [data]( https://developer.android.com/jetpack/guide/data-layer) - It is the source of truth for all data in the app.
-
 ---
 The architecture uses the reactive programming model with [UDF](https://developer.android.com/jetpack/guide/ui-layer#udf) with the data layer below using [kotlin flows](https://developer.android.com/kotlin/flow)
 
