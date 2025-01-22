@@ -9,6 +9,7 @@ import com.amarinag.randomuser.core.common.result.asResult
 import com.amarinag.randomuser.core.domain.GetUserFilteredUseCase
 import com.amarinag.randomuser.core.domain.GetUserFilteredUseCase.Params
 import com.amarinag.randomuser.core.domain.GetUsersUseCase
+import com.amarinag.randomuser.core.model.User
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -26,6 +27,10 @@ class UsersViewModel @Inject constructor(
     private val getUsersUseCase: GetUsersUseCase,
     private val getUserFilteredUseCase: GetUserFilteredUseCase
 ) : ViewModel() {
+    private val _uiState: MutableStateFlow<UsersState> =
+        MutableStateFlow(UsersState(null, isLoading = true))
+    val uiState: StateFlow<UsersState> = _uiState.asStateFlow()
+
     fun queryFilter(query: String) {
         viewModelScope.launch {
             getUserFilteredUseCase(Params(query = query)).asResult().mapLatest { result ->
@@ -33,6 +38,7 @@ class UsersViewModel @Inject constructor(
                     is Error,
                     Loading -> {
                     }
+
                     is Success -> _uiState.update {
                         it.copy(
                             users = result.data,
@@ -46,9 +52,11 @@ class UsersViewModel @Inject constructor(
         }
     }
 
-    private val _uiState: MutableStateFlow<UsersState> =
-        MutableStateFlow(UsersState(null, isLoading = true))
-    val uiState: StateFlow<UsersState> = _uiState.asStateFlow()
+    fun onDeleteUser(user: User) {
+        _uiState.update {
+            it.copy(users = _uiState.value.users?.filter { it != user } ?: _uiState.value.users)
+        }
+    }
 
     fun getUsers(loadMore: Boolean = false) {
         viewModelScope.launch {

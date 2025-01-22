@@ -1,6 +1,15 @@
 package com.amarinag.randomuser.feature.users
 
+import androidx.compose.animation.core.FiniteAnimationSpec
+import androidx.compose.animation.core.spring
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.slideInHorizontally
+import androidx.compose.animation.slideOutHorizontally
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.WindowInsetsSides
 import androidx.compose.foundation.layout.consumeWindowInsets
@@ -47,6 +56,7 @@ internal fun UsersRouter(
     UsersScreen(
         uiState = uiState,
         onUserClick = onUserClick,
+        onDeleteUser = viewModel::onDeleteUser,
         loadMoreUsers = { viewModel.getUsers(true) },
         queryFilter = viewModel::queryFilter,
         modifier = modifier
@@ -57,6 +67,7 @@ internal fun UsersRouter(
 internal fun UsersScreen(
     uiState: UsersState,
     onUserClick: (String) -> Unit,
+    onDeleteUser: (User) -> Unit,
     loadMoreUsers: () -> Unit,
     queryFilter: (String) -> Unit,
     modifier: Modifier = Modifier
@@ -101,6 +112,7 @@ internal fun UsersScreen(
                 UsersList(
                     users = uiState.users,
                     onUserClick = onUserClick,
+                    onDeleteUser = onDeleteUser,
                     loadMoreUsers = loadMoreUsers,
                     isLoadingMore = uiState.isLoadMore,
                     isFilteredList = uiState.filteredList,
@@ -112,12 +124,14 @@ internal fun UsersScreen(
     }
 }
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun UsersList(
     users: List<User>,
     isLoadingMore: Boolean,
     isFilteredList: Boolean,
     onUserClick: (String) -> Unit,
+    onDeleteUser: (User) -> Unit,
     loadMoreUsers: () -> Unit,
     modifier: Modifier = Modifier,
     showPhone: Boolean = false
@@ -136,14 +150,24 @@ fun UsersList(
                     subtitle = user.email,
                     label = user.phone,
                     imageUrl = user.picture.medium,
-                    onItemClick = onUserClick
+                    onItemClick = { onUserClick(user.email) },
+                    onItemDelete = { onDeleteUser(user) },
+                    modifier = Modifier.animateItem(
+                        fadeInSpec = spring(),
+                        fadeOutSpec = spring()
+                    )
                 )
             } else {
                 ImageTwoLinesItem(
                     title = user.name.fullname,
                     subtitle = user.email,
                     imageUrl = user.picture.medium,
-                    onItemClick = onUserClick
+                    onItemClick = { onUserClick(user.email) },
+                    onItemDelete = { onDeleteUser(user) },
+                    modifier = Modifier.animateItem(
+                        fadeInSpec = tween(),
+                        fadeOutSpec = tween()
+                    )
                 )
             }
         }

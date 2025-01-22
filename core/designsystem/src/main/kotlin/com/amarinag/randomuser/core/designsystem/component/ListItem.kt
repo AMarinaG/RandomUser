@@ -6,6 +6,7 @@ import androidx.compose.animation.core.rememberInfiniteTransition
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -16,7 +17,10 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -43,14 +47,15 @@ fun ImageTwoLinesItem(
     title: String,
     subtitle: String,
     imageUrl: String,
-    onItemClick: (String) -> Unit,
-    id: String = subtitle
+    onItemClick: () -> Unit,
+    onItemDelete: () -> Unit,
+    modifier: Modifier = Modifier
 ) {
     Row(
         verticalAlignment = Alignment.CenterVertically,
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
-            .clickable(onClick = { onItemClick(id) })
+            .clickable(onClick = onItemClick)
             .padding(MaterialTheme.spacing.normal)
     ) {
         AsyncImage(
@@ -62,30 +67,41 @@ fun ImageTwoLinesItem(
         )
         Spacer(modifier = Modifier.width(MaterialTheme.spacing.normal))
         Column {
-            Text(
-                text = title,
-                style = MaterialTheme.typography.headlineSmall,
-                fontWeight = FontWeight.Bold
-            )
+            Row(
+                Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Text(
+                    text = title,
+                    style = MaterialTheme.typography.headlineSmall,
+                    fontWeight = FontWeight.Bold
+                )
+                IconButton(onClick = onItemDelete) {
+                    Icon(imageVector = Icons.Default.Delete, contentDescription = null)
+                }
+            }
             Spacer(modifier = Modifier.height(MaterialTheme.spacing.small))
             Text(text = subtitle, style = MaterialTheme.typography.titleMedium)
         }
     }
 }
+
 @Composable
 fun ImageThreeLinesItem(
     title: String,
     subtitle: String,
     label: String,
     imageUrl: String,
-    onItemClick: (String) -> Unit,
-    id: String = subtitle
+    onItemClick: () -> Unit,
+    onItemDelete: () -> Unit,
+    modifier: Modifier = Modifier
 ) {
     Row(
         verticalAlignment = Alignment.CenterVertically,
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
-            .clickable(onClick = { onItemClick(id) })
+            .clickable(onClick = onItemClick)
             .padding(MaterialTheme.spacing.normal)
     ) {
         AsyncImage(
@@ -97,11 +113,20 @@ fun ImageThreeLinesItem(
         )
         Spacer(modifier = Modifier.width(MaterialTheme.spacing.normal))
         Column {
-            Text(
-                text = title,
-                style = MaterialTheme.typography.headlineSmall,
-                fontWeight = FontWeight.Bold
-            )
+            Row(
+                Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Text(
+                    text = title,
+                    style = MaterialTheme.typography.headlineSmall,
+                    fontWeight = FontWeight.Bold
+                )
+                IconButton(onClick = onItemDelete) {
+                    Icon(imageVector = Icons.Default.Delete, contentDescription = null)
+                }
+            }
             Spacer(modifier = Modifier.height(MaterialTheme.spacing.small))
             Text(text = subtitle, style = MaterialTheme.typography.titleMedium)
 
@@ -147,6 +172,7 @@ fun ImageTwoLinesItemPlaceholder() {
         }
     }
 }
+
 @Composable
 @Preview
 fun ImageThreeLinesItemPlaceholder() {
@@ -213,7 +239,7 @@ fun IconTwoLinesItem(
         )
         Spacer(
             modifier =
-            Modifier.width(MaterialTheme.spacing.normal)
+                Modifier.width(MaterialTheme.spacing.normal)
         )
         Column {
             Text(
