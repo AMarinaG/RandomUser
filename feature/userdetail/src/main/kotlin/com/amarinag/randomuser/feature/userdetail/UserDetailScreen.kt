@@ -19,8 +19,8 @@ import androidx.compose.material.icons.outlined.DateRange
 import androidx.compose.material.icons.outlined.Email
 import androidx.compose.material.icons.outlined.Face
 import androidx.compose.material.icons.outlined.Phone
-import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -50,11 +50,14 @@ import com.google.maps.android.compose.GoogleMap
 import com.google.maps.android.compose.Marker
 import com.google.maps.android.compose.MarkerState
 import com.google.maps.android.compose.rememberCameraPositionState
+import kotlinx.datetime.Instant
+import kotlinx.datetime.Instant.Companion
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toInstant
 import kotlinx.datetime.toLocalDateTime
 
 const val UserInfoTestTag = "UserInfoTestTag"
+
 @Composable
 internal fun UserDetailRoute(
     viewModel: UserDetailViewModel = hiltViewModel()
@@ -74,7 +77,8 @@ fun UserDetailScreen(
     when (uiState) {
         Error -> Text(text = stringResource(id = string.feature_userdetail_error))
         Loading -> Text(text = stringResource(id = string.feature_userdetail_loading))
-        is Success -> Scaffold(modifier = modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
+        is Success -> Scaffold(
+            modifier = modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
             topBar = {
                 RandomLargeTopAppBar(
                     title = uiState.user.name.fullname,
@@ -107,31 +111,31 @@ fun UserDetail(user: User) {
         subtitle = user.name.fullname,
         icon = Icons.Outlined.AccountCircle
     )
-    Divider()
+    HorizontalDivider()
     IconTwoLinesItem(
         title = stringResource(R.string.feature_userdetail_email),
         subtitle = user.email,
         icon = Icons.Outlined.Email
     )
-    Divider()
+    HorizontalDivider()
     IconTwoLinesItem(
         title = stringResource(R.string.feature_userdetail_gender),
         subtitle = user.gender,
         icon = Icons.Outlined.Face
     )
-    Divider()
+    HorizontalDivider()
     IconTwoLinesItem(
         title = stringResource(R.string.feature_userdetail_registered_date),
         subtitle = user.registered.toHumanDate(),
         icon = Icons.Outlined.DateRange
     )
-    Divider()
+    HorizontalDivider()
     IconTwoLinesItem(
         title = stringResource(R.string.feature_userdetail_phone),
         subtitle = user.phone,
         icon = Icons.Outlined.Phone
     )
-    Divider()
+    HorizontalDivider()
     Column {
         Text(
             modifier = Modifier.padding(
@@ -164,4 +168,4 @@ fun UserDetail(user: User) {
 
 private fun UserCoordinates.latlong() = LatLng(this.latitude.toDouble(), longitude.toDouble())
 private fun UserRegistered.toHumanDate() =
-    date.toInstant().toLocalDateTime(TimeZone.UTC).date.toString()
+    Instant.parse(date).toLocalDateTime(TimeZone.UTC).date.toString()
