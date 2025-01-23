@@ -9,6 +9,7 @@ androidxCoreSplashscreen = "1.0.1"
 androidxHiltNavigationCompose = "1.2.0"
 androidxLifecycle = "2.8.7"
 androidxNavigation = "2.8.5"
+androidxTestCore = "1.6.1"
 androidxTestRules = "1.6.1"
 androidxTestRunner = "1.6.2"
 androidxTracing = "1.2.0"
@@ -27,6 +28,7 @@ mockk = "1.13.16"
 okhttp = "4.12.0"
 retrofit = "2.11.0"
 retrofitKotlinxSerializationJson = "1.0.0"
+room = "2.6.1"
 secrets = "2.0.1"
 truth = "1.4.4"
 turbine = "1.2.0"
@@ -52,6 +54,7 @@ androidx-lifecycle-runtimeCompose = { group = "androidx.lifecycle", name = "life
 androidx-lifecycle-viewModelCompose = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-compose", version.ref = "androidxLifecycle" }
 androidx-navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "androidxNavigation" }
 androidx-navigation-testing = { group = "androidx.navigation", name = "navigation-testing", version.ref = "androidxNavigation" }
+androidx-test-core = { group = "androidx.test", name = "core", version.ref = "androidxTestCore" }
 androidx-test-rules = { group = "androidx.test", name = "rules", version.ref = "androidxTestRules" }
 androidx-test-runner = { group = "androidx.test", name = "runner", version.ref = "androidxTestRunner" }
 androidx-tracing-ktx = { group = "androidx.tracing", name = "tracing-ktx", version.ref = "androidxTracing" }
@@ -72,6 +75,9 @@ mockk-android = { group = "io.mockk", name = "mockk-android", version.ref = "moc
 okhttp-logging = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "okhttp" }
 retrofit-core = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
 retrofit-kotlin-serialization = { group = "com.jakewharton.retrofit", name = "retrofit2-kotlinx-serialization-converter", version.ref = "retrofitKotlinxSerializationJson" }
+room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room" }
+room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "room" }
+room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "room" }
 truth = { group = "com.google.truth", name = "truth", version.ref = "truth" }
 turbine = { group = "app.cash.turbine", name = "turbine", version.ref = "turbine" }
 # Dependencies of the included build-logic
@@ -79,6 +85,7 @@ android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", ver
 android-tools-common = { group = "com.android.tools", name = "common", version.ref = "androidTools" }
 kotlin-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
 ksp-gradlePlugin = { group = "com.google.devtools.ksp", name = "com.google.devtools.ksp.gradle.plugin", version.ref = "ksp" }
+room-gradlePlugin = { group = "androidx.room", name = "room-gradle-plugin", version.ref = "room" }
 
 
 [plugins]
@@ -90,6 +97,7 @@ hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+room = { id = "androidx.room", version.ref = "room" }
 secrets = { id = "com.google.android.libraries.mapsplatform.secrets-gradle-plugin", version.ref = "secrets" }
 
 # Plugins defined by this project
@@ -101,4 +109,5 @@ amg-randomuser-android-hilt = { id = "amg.randomuser.android.hilt", version = "u
 amg-randomuser-android-library = { id = "amg.randomuser.android.library", version = "unspecified" }
 amg-randomuser-android-library-compose = { id = "amg.randomuser.android.library.compose", version = "unspecified" }
 amg-randomuser-android-library-jacoco = { id = "amg.randomuser.android.library.jacoco", version = "unspecified" }
+amg-randomuser-android-room = { id = "amg.randomuser.android.room" }
 amg-randomuser-jvm-library = { id = "amg.randomuser.jvm.library", version = "unspecified" }

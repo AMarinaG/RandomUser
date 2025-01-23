@@ -1,5 +1,6 @@
 package com.amarinag.randomuser.core.data.model
 
+import com.amarinag.core.database.model.UserEntity
 import com.amarinag.randomuser.core.model.User
 import com.amarinag.randomuser.core.model.UserCoordinates
 import com.amarinag.randomuser.core.model.UserDob
@@ -26,10 +27,35 @@ fun NetworkUser.asDomain(): User = User(
     gender = gender,
     location = location.asDomain(),
     name = name.asDomain(),
-    nat = nat,
     phone = phone,
     picture = picture.asDomain(),
     registered = registered.asDomain()
+)
+
+fun NetworkUser.asEntity(): UserEntity = UserEntity(
+    email = email,
+    usernameFirst = name.first,
+    usernameLast = name.last,
+    usernameTitle = name.title,
+    phone = phone,
+    gender = gender,
+    dobAge = dob.age,
+    dobDate = dob.date,
+    pictureLarge = picture.large,
+    pictureMedium = picture.medium,
+    pictureThumbnail = picture.thumbnail,
+    locationCity = location.city,
+    locationCountry = location.country,
+    locationState = location.state,
+    cell = cell,
+    locationLatitude = location.coordinates.latitude,
+    locationLongitude = location.coordinates.longitude,
+    locationStreetName = location.street.name,
+    locationStreetNumber = location.street.number,
+    locationTimezoneDescription = location.timezone.description,
+    locationTimezoneOffset = location.timezone.offset,
+    registeredAge = registered.age,
+    registeredDate = registered.date,
 )
 
 fun List<NetworkUser>.asDomain(): List<User> = map(NetworkUser::asDomain)
