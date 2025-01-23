@@ -9,6 +9,7 @@ import com.amarinag.randomuser.core.testing.data.userTestData
 import com.amarinag.randomuser.feature.users.robot.usersRobot
 import io.mockk.MockKAnnotations
 import io.mockk.impl.annotations.MockK
+import io.mockk.junit4.MockKRule
 import io.mockk.verify
 import org.junit.Before
 import org.junit.Rule
@@ -17,6 +18,9 @@ import org.junit.Test
 class UsersScreenTest {
     @get:Rule
     val composeTestRule = createAndroidComposeRule<ComponentActivity>()
+
+    @get:Rule
+    val mockkRule = MockKRule(this)
 
     @MockK(relaxed = true)
     private lateinit var onUserClick: (String) -> Unit
@@ -29,9 +33,6 @@ class UsersScreenTest {
 
     @MockK(relaxed = true)
     private lateinit var onQueryFilters: (String) -> Unit
-
-    @Before
-    fun setUp() = MockKAnnotations.init(this, relaxed = true, relaxUnitFun = true)
 
     @Test
     fun loading_whenScreenIsLoading_exist() {
