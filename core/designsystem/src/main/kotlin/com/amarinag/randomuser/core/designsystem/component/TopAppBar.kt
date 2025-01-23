@@ -2,6 +2,10 @@ package com.amarinag.randomuser.core.designsystem.component
 
 import androidx.annotation.StringRes
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.slideInHorizontally
+import androidx.compose.animation.slideInVertically
+import androidx.compose.animation.slideOutHorizontally
+import androidx.compose.animation.slideOutVertically
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -21,6 +25,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.LargeTopAppBar
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.SearchBarDefaults.InputField
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarScrollBehavior
@@ -45,6 +50,7 @@ fun RandomTopAppBar(
     onQueryChange: (String) -> Unit,
     onSearch: (String) -> Unit,
     isSearchActive: Boolean,
+    enabled: Boolean = isSearchActive,
     onActiveChange: (Boolean) -> Unit,
     showPhone: Boolean,
     onShowPhoneIcon: (Boolean) -> Unit
@@ -63,29 +69,40 @@ fun RandomTopAppBar(
             Icon(imageVector = Icons.Default.Search, contentDescription = null)
         }
     })
-    AnimatedVisibility(visible = isSearchActive) {
+    AnimatedVisibility(
+        visible = isSearchActive,
+        enter = slideInVertically(),
+        exit = slideOutVertically()
+    ) {
         DockedSearchBar(
-            query = query,
-            onQueryChange = onQueryChange,
-            onSearch = onSearch,
-            active = isSearchActive,
-            onActiveChange = onActiveChange,
-            placeholder = { Text(text = stringResource(string.core_designsystem_search)) },
+            inputField = {
+                InputField(
+                    query = query,
+                    onQueryChange = onQueryChange,
+                    onSearch = onSearch,
+                    expanded = isSearchActive,
+                    onExpandedChange = onActiveChange,
+                    modifier = Modifier.fillMaxWidth(),
+                    placeholder = { Text(text = stringResource(string.core_designsystem_search)) },
+                    trailingIcon = {
+                        IconButton(modifier = Modifier, onClick = {
+                            if (query.isEmpty()) {
+                                onActiveChange(false)
+                            }
+                            onQueryChange("")
+                        }) {
+                            Icon(imageVector = Icons.Outlined.Clear, contentDescription = null)
+                        }
+                    },
+                )
+            },
+            expanded = isSearchActive,
+            onExpandedChange = onActiveChange,
             modifier = Modifier
                 .fillMaxWidth()
                 .height(MaterialTheme.spacing.hugest),
-            trailingIcon = {
-                IconButton(modifier = Modifier, onClick = {
-                    if (query.isEmpty()) {
-                        onActiveChange(false)
-                    }
-                    onQueryChange("")
-                }) {
-                    Icon(imageVector = Icons.Outlined.Clear, contentDescription = null)
-                }
-            }
-        ) {
-        }
+            content = {}
+        )
     }
 }
 
