@@ -2,6 +2,7 @@ package com.amarinag.core.database
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
+import com.amarinag.core.database.dao.UserDao
 import com.amarinag.core.database.model.UserEntity
 
 @Database(
@@ -9,4 +10,6 @@ import com.amarinag.core.database.model.UserEntity
     exportSchema = true,
     entities = [UserEntity::class]
 )
-internal abstract class RandomUserDatabase: RoomDatabase()
+internal abstract class RandomUserDatabase : RoomDatabase() {
+    abstract fun userDao(): UserDao
+}
