@@ -4,11 +4,13 @@ import androidx.activity.ComponentActivity
 import androidx.compose.foundation.layout.Column
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
+import com.amarinag.randomuser.core.model.User
 import com.amarinag.randomuser.core.testing.data.userTestData
 import com.amarinag.randomuser.feature.users.robot.usersRobot
-import io.mockk.coVerify
+import io.mockk.MockKAnnotations
 import io.mockk.impl.annotations.MockK
 import io.mockk.verify
+import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 
@@ -17,7 +19,19 @@ class UsersScreenTest {
     val composeTestRule = createAndroidComposeRule<ComponentActivity>()
 
     @MockK(relaxed = true)
-    private val onUserClick: (String) -> Unit = {}
+    private lateinit var onUserClick: (String) -> Unit
+
+    @MockK(relaxed = true)
+    private lateinit var onUserDelete: (User) -> Unit
+
+    @MockK(relaxed = true)
+    private lateinit var onLoadMoreUsers: () -> Unit
+
+    @MockK(relaxed = true)
+    private lateinit var onQueryFilters: (String) -> Unit
+
+    @Before
+    fun setUp() = MockKAnnotations.init(this, relaxed = true, relaxUnitFun = true)
 
     @Test
     fun loading_whenScreenIsLoading_exist() {
@@ -39,7 +53,7 @@ class UsersScreenTest {
             }
         }
         usersRobot(composeTestRule) {
-            scrollToIndex(3)
+            scrollToIndex(5)
             countItem(11)
             loadingRowDisplayed()
         }
@@ -59,13 +73,40 @@ class UsersScreenTest {
         }
     }
 
+    @Test
+    fun userList_whenClickOnDelete_DeleteUser() {
+        composeTestRule.setContent {
+            Column {
+                UsersScreen(uiState = UsersState(users = ANY_USERS))
+            }
+        }
+        usersRobot(composeTestRule) {
+            clickDeleteItemOnIndex(0)
+        }
+        verify { onUserDelete(ANY_USERS.first()) }
+    }
+
+    @Test
+    fun userList_whenClickOnItem() {
+        composeTestRule.setContent {
+            Column {
+                UsersScreen(uiState = UsersState(users = ANY_USERS))
+            }
+        }
+        usersRobot(composeTestRule) {
+            clickItemOnIndex(0)
+        }
+        verify { onUserClick(ANY_USERS.first().email) }
+    }
+
     @Composable
     private fun UsersScreen(uiState: UsersState) {
         UsersScreen(
             uiState = uiState,
             onUserClick = onUserClick,
-            loadMoreUsers = { },
-            queryFilter = {}
+            onDeleteUser = onUserDelete,
+            loadMoreUsers = onLoadMoreUsers,
+            queryFilter = onQueryFilters,
         )
     }
 

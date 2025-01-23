@@ -4,6 +4,7 @@ import androidx.compose.ui.test.assertCountEquals
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.assertIsNotDisplayed
 import androidx.compose.ui.test.hasScrollToNodeAction
+import androidx.compose.ui.test.hasTestTag
 import androidx.compose.ui.test.onChildAt
 import androidx.compose.ui.test.onChildren
 import androidx.compose.ui.test.onFirst
@@ -11,6 +12,7 @@ import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performScrollToIndex
+import com.amarinag.randomuser.core.designsystem.component.DeleteUserTestTag
 import com.amarinag.randomuser.core.designsystem.component.SEARCH_ICON_TEST_TAG
 import com.amarinag.randomuser.core.testing.robot.BaseRobot
 import com.amarinag.randomuser.core.testing.robot.ComposeTestRule
@@ -50,8 +52,13 @@ class UsersRobot(composeTestRule: ComposeTestRule) :
     fun clickItemOnIndex(index: Int) {
         composeTestRule.onAllNodes(hasScrollToNodeAction())
             .onFirst()
-            .performScrollToIndex(index - 1)
+            .performScrollToIndex(index)
             .onChildAt(index)
+            .performClick()
+    }
+
+    fun clickDeleteItemOnIndex(index: Int) {
+        composeTestRule.onAllNodes(hasTestTag(DeleteUserTestTag))[index]
             .performClick()
     }
 

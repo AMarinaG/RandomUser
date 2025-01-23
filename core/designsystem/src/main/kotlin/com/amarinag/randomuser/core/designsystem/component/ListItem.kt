@@ -36,11 +36,14 @@ import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.onGloballyPositioned
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.IntSize
 import coil.compose.AsyncImage
 import com.amarinag.randomuser.core.designsystem.theme.spacing
+
+const val DeleteUserTestTag = "DeleteUserTestTag"
 
 @Composable
 fun ImageTwoLinesItem(
@@ -68,7 +71,7 @@ fun ImageTwoLinesItem(
         Spacer(modifier = Modifier.width(MaterialTheme.spacing.normal))
         Column {
             Row(
-                Modifier.fillMaxWidth(),
+                modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically
             ) {
@@ -77,7 +80,7 @@ fun ImageTwoLinesItem(
                     style = MaterialTheme.typography.headlineSmall,
                     fontWeight = FontWeight.Bold
                 )
-                IconButton(onClick = onItemDelete) {
+                IconButton(onClick = onItemDelete, modifier = Modifier.testTag(DeleteUserTestTag)) {
                     Icon(imageVector = Icons.Default.Delete, contentDescription = null)
                 }
             }
@@ -123,7 +126,7 @@ fun ImageThreeLinesItem(
                     style = MaterialTheme.typography.headlineSmall,
                     fontWeight = FontWeight.Bold
                 )
-                IconButton(onClick = onItemDelete) {
+                IconButton(onClick = onItemDelete, modifier = Modifier.testTag(DeleteUserTestTag)) {
                     Icon(imageVector = Icons.Default.Delete, contentDescription = null)
                 }
             }
