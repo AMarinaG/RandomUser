@@ -1,15 +1,10 @@
 package com.amarinag.randomuser.feature.users
 
-import androidx.compose.animation.core.FiniteAnimationSpec
+import android.util.Log
 import androidx.compose.animation.core.spring
 import androidx.compose.animation.core.tween
-import androidx.compose.animation.fadeIn
-import androidx.compose.animation.fadeOut
-import androidx.compose.animation.slideInHorizontally
-import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.WindowInsetsSides
 import androidx.compose.foundation.layout.consumeWindowInsets
@@ -150,7 +145,10 @@ fun UsersList(
                     subtitle = user.email,
                     label = user.phone,
                     imageUrl = user.picture.medium,
-                    onItemClick = { onUserClick(user.email) },
+                    onItemClick = {
+                        Log.d("AMG", "Pulsado $user")
+                        onUserClick(user.email)
+                    },
                     onItemDelete = { onDeleteUser(user) },
                     modifier = Modifier.animateItem(
                         fadeInSpec = spring(),
@@ -162,7 +160,10 @@ fun UsersList(
                     title = user.name.fullname,
                     subtitle = user.email,
                     imageUrl = user.picture.medium,
-                    onItemClick = { onUserClick(user.email) },
+                    onItemClick = {
+                        Log.d("AMG", "Pulsado $user")
+                        onUserClick(user.email)
+                    },
                     onItemDelete = { onDeleteUser(user) },
                     modifier = Modifier.animateItem(
                         fadeInSpec = tween(),
