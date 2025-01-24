@@ -15,7 +15,7 @@ dependencies {
     api(projects.core.database)
     api(projects.core.network)
 
-    testImplementation(project(":core:testing"))
+    testImplementation(projects.core.testing)
 
     testImplementation(libs.kotlinx.coroutines.test)
     testImplementation(libs.kotlinx.serialization.json)
