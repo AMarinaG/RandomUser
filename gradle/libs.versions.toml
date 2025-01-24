@@ -58,6 +58,7 @@ androidx-navigation-testing = { group = "androidx.navigation", name = "navigatio
 androidx-paging-common = { module = "androidx.paging:paging-common", version.ref = "androixPaging" }
 androidx-paging-compose = { module = "androidx.paging:paging-compose", version.ref = "androixPaging" }
 androidx-paging-runtime = { module = "androidx.paging:paging-runtime", version.ref = "androixPaging" }
+androidx-room-paging = { module = "androidx.room:room-paging", version.ref = "room" }
 androidx-test-core = { group = "androidx.test", name = "core", version.ref = "androidxTestCore" }
 androidx-test-rules = { group = "androidx.test", name = "rules", version.ref = "androidxTestRules" }
 androidx-test-runner = { group = "androidx.test", name = "runner", version.ref = "androidxTestRunner" }

@@ -13,6 +13,8 @@ dependencies {
     api(projects.core.model)
 
     implementation(libs.kotlinx.datetime)
+    implementation(libs.androidx.room.paging)
+    implementation(libs.androidx.paging.runtime)
 
     androidTestImplementation(libs.androidx.test.core)
     androidTestImplementation(libs.androidx.test.runner)

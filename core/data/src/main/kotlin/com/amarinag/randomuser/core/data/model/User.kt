@@ -59,6 +59,8 @@ fun User.asEntity(): UserEntity = UserEntity(
 )
 
 fun List<NetworkUser>.asDomain(): List<User> = map(NetworkUser::asDomain)
+fun List<NetworkUser>.asEntity(): List<UserEntity> =
+    map(NetworkUser::asDomain).map { it.asEntity() }
 
 internal fun NetworkDob.asDomain(): UserDob = UserDob(
     age = age, date = date
