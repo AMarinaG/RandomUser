@@ -1,6 +1,6 @@
 <img src="images/logo.png" alt="App Logo"/>
 
-![randomuserhapplyflow.gif](images/randomuserhapplyflow.gif)
+![RandomUserHappypath_v2.gif](images/RandomUserHappypath_v2.gif)![randomuserhapplyflow.gif](images/randomuserhapplyflow.gif)
 
 # Architecture
 
@@ -64,3 +64,4 @@ can run test with following gradle task
 * [**build-logic**](build-logic/README.md)
 * [**Robot Pattern**](feature/users/src/androidTest/kotlin/com/amarinag/randomuser/feature/users)
 * [**Shimmer Animation**](core/designsystem/src/main/kotlin/com/amarinag/randomuser/core/designsystem/component/ListItem.kt#L151-L176)
+* [**Jetpack Paging 3**](https://developer.android.com/topic/libraries/architecture/paging/v3-overview?hl=es-419) [source](feature/users/src/androidTest/kotlin/com/amarinag/randomuser/feature/users)
