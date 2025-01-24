@@ -109,7 +109,7 @@ internal fun UsersScreen(
                         users = uiState,
                         onUserClick = onUserClick,
                         onDeleteUser = onDeleteUser,
-                        isFilteredList = false,
+                        isFilteredList = query.isNotBlank(),
                         showPhone = showPhone,
                         modifier = modifier
                     )
@@ -162,7 +162,7 @@ fun UsersList(
                 }
             }
         }
-        if (!isFilteredList) {
+        if (!isFilteredList || users.loadState.refresh == LoadState.Loading) {
             item {
                 if (showPhone) {
                     ImageThreeLinesItemPlaceholder()

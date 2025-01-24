@@ -13,6 +13,18 @@ interface UserDao {
     @Query(value = "SELECT * FROM users")
     fun getUsers(): PagingSource<Int, UserEntity>
 
+    @Query(
+        """
+        SELECT * FROM users 
+        WHERE LOWER(email) LIKE '%' || LOWER(:query) || '%' 
+           OR LOWER(phone) LIKE '%' || LOWER(:query) || '%'
+           OR LOWER(cell) LIKE '%' || LOWER(:query) || '%'
+           OR LOWER(usernameFirst) LIKE '%' || LOWER(:query) || '%'
+           OR LOWER(usernameLast) LIKE '%' || LOWER(:query) || '%'
+    """
+    )
+    fun getUserFiltered(query: String): PagingSource<Int, UserEntity>
+
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertUsers(users: List<UserEntity>)
 

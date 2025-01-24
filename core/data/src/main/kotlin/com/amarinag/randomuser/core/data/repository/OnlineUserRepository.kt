@@ -25,21 +25,26 @@ class OnlineUserRepository @Inject constructor(
     private val dataStore: RandomUserPreferenceDataSource,
 ) : UserRepository {
 
-    private val pagingSourceFactory = { userDao.getUsers() }
     override fun getUsers(query: String?): Flow<PagingData<User>> = Pager<Int, UserEntity>(
         config = PagingConfig(
             pageSize = 20,
             enablePlaceholders = false,
-            prefetchDistance = 3,
+            prefetchDistance = 1,
             initialLoadSize = 50,
         ),
         remoteMediator = UserRemoteMediator(
-            query,
+            query = query,
             network = network,
             userDao = userDao,
             dataStore = dataStore
         ),
-        pagingSourceFactory = pagingSourceFactory
+        pagingSourceFactory = {
+            if (query?.isEmpty() == true) {
+                userDao.getUsers()
+            } else {
+                userDao.getUserFiltered(query ?: "")
+            }
+        }
     ).flow.map { pagingData -> pagingData.map(UserEntity::asModel) }
 
     override fun getUserByEmail(email: String): Flow<User> = userDao.getUserByEmail(email)
