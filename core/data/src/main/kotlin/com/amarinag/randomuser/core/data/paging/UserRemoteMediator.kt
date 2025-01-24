@@ -26,7 +26,7 @@ class UserRemoteMediator(
         if (!query.isNullOrBlank()) return MediatorResult.Success(true)
         val page = when (loadType) {
             LoadType.REFRESH -> {
-//                if (dataStore.savedPage.first() > 1) return MediatorResult.Success(false)
+                if (dataStore.savedPage.first() > 1) return MediatorResult.Success(false)
                 dataStore.resetPage()
                 dataStore.savedPage.first()
             }
