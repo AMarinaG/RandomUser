@@ -1,52 +1,32 @@
 package com.amarinag.randomuser.core.data.repository
 
-import androidx.annotation.VisibleForTesting
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
 import com.amarinag.core.database.dao.UserDao
-import com.amarinag.randomuser.core.data.model.asDomain
-import com.amarinag.randomuser.core.data.model.asEntity
 import com.amarinag.randomuser.core.model.User
 import com.amarinag.randomuser.core.network.RandomUserDataSource
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.flow.emptyFlow
 import javax.inject.Inject
 import javax.inject.Singleton
-
-private const val INITIAL_PAGE = 0
 
 @Singleton
 class OnlineUserRepository @Inject constructor(
     private val network: RandomUserDataSource,
     private val userDao: UserDao
 ) : UserRepository {
-    @VisibleForTesting
-    var seed: String? = null
 
-    @VisibleForTesting
-    var currentPage: Int = INITIAL_PAGE
+    override fun getUsers(query: String?): Flow<PagingData<User>> = Pager(
+        config = PagingConfig(
+            pageSize = 20,
+            enablePlaceholders = false,
+            prefetchDistance = 3,
+            initialLoadSize = 30,
+        ),
+        pagingSourceFactory = { UserPagingSource(network, query) }
+    ).flow
 
-    @VisibleForTesting
-    var lastQuery: String? = ""
-
-    @VisibleForTesting
-    val users: MutableList<User> = mutableListOf()
-    override fun getUsers(query: String?): Flow<List<User>> = flow {
-        if (query.isNullOrEmpty() || query == lastQuery) {
-            currentPage = currentPage.plus(1)
-            val response = network.getUsers(currentPage, seed)
-            seed = response.info.seed
-            users.addAll(response.users.asDomain())
-            userDao.insertUsers(users.map { it.asEntity() })
-            emit(users)
-        } else {
-            lastQuery = query
-            emit(users.filter {
-                it.email.uppercase().contains(query.uppercase()) || it.name.fullname.uppercase()
-                    .contains(query.uppercase())
-            })
-        }
-    }
-
-    override fun getUserByEmail(email: String): Flow<User> =
-        flowOf(users.first { it.email == email })
+    override fun getUserByEmail(email: String): Flow<User> = emptyFlow()
+//        flowOf(users.first { it.email == email })
 }

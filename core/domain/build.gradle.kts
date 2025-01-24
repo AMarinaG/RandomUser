@@ -10,11 +10,11 @@ android {
 }
 
 dependencies {
-    api(project(":core:data"))
-    api(project(":core:model"))
-
-    testImplementation(project(":core:testing"))
+    api(projects.core.common)
+    api(projects.core.data)
+    api(projects.core.model)
+    implementation(libs.androidx.paging.common)
+    testImplementation(projects.core.testing)
 
     implementation(libs.javax.inject)
-    implementation(libs.kotlinx.coroutines.guava)
 }

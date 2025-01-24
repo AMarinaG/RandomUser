@@ -15,8 +15,9 @@ dependencies {
     api(projects.core.database)
     api(projects.core.network)
 
-    testImplementation(projects.core.testing)
+    implementation(libs.androidx.paging.common)
 
+    testImplementation(projects.core.testing)
     testImplementation(libs.kotlinx.coroutines.test)
     testImplementation(libs.kotlinx.serialization.json)
 }

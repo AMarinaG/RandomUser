@@ -28,7 +28,7 @@ internal object NetworkModule {
     fun providesOkHttpCallFactory(): Call.Factory = OkHttpClient.Builder()
         .addInterceptor(HttpLoggingInterceptor()
             .apply {
-                setLevel(HttpLoggingInterceptor.Level.BODY)
+                setLevel(HttpLoggingInterceptor.Level.BASIC)
             })
         .build()
 
