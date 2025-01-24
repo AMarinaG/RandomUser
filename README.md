@@ -1,6 +1,6 @@
 <img src="images/logo.png" alt="App Logo"/>
 
-![RandomUserHappypath_v2.gif](images/RandomUserHappypath_v2.gif)![randomuserhapplyflow.gif](images/randomuserhapplyflow.gif)
+![RandomUserHappypath_v2.gif](images/RandomUserHappypath_v2.gif)
 
 # Architecture
 
