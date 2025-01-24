@@ -1,7 +1,9 @@
 package com.amarinag.randomuser.core.data.repository
 
 import androidx.annotation.VisibleForTesting
+import com.amarinag.core.database.dao.UserDao
 import com.amarinag.randomuser.core.data.model.asDomain
+import com.amarinag.randomuser.core.data.model.asEntity
 import com.amarinag.randomuser.core.model.User
 import com.amarinag.randomuser.core.network.RandomUserDataSource
 import kotlinx.coroutines.flow.Flow
@@ -14,14 +16,18 @@ private const val INITIAL_PAGE = 0
 
 @Singleton
 class OnlineUserRepository @Inject constructor(
-    private val network: RandomUserDataSource
+    private val network: RandomUserDataSource,
+    private val userDao: UserDao
 ) : UserRepository {
     @VisibleForTesting
     var seed: String? = null
+
     @VisibleForTesting
     var currentPage: Int = INITIAL_PAGE
+
     @VisibleForTesting
     var lastQuery: String? = ""
+
     @VisibleForTesting
     val users: MutableList<User> = mutableListOf()
     override fun getUsers(query: String?): Flow<List<User>> = flow {
@@ -30,6 +36,7 @@ class OnlineUserRepository @Inject constructor(
             val response = network.getUsers(currentPage, seed)
             seed = response.info.seed
             users.addAll(response.users.asDomain())
+            userDao.insertUsers(users.map { it.asEntity() })
             emit(users)
         } else {
             lastQuery = query

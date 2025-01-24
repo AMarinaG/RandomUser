@@ -32,7 +32,7 @@ fun NetworkUser.asDomain(): User = User(
     registered = registered.asDomain()
 )
 
-fun NetworkUser.asEntity(): UserEntity = UserEntity(
+fun User.asEntity(): UserEntity = UserEntity(
     email = email,
     usernameFirst = name.first,
     usernameLast = name.last,
