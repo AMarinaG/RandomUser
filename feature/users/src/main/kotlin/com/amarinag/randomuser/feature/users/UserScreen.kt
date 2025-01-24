@@ -63,7 +63,7 @@ internal fun UsersScreen(
 ) {
     var query by remember { mutableStateOf("") }
     var isSearchActive by remember { mutableStateOf(false) }
-    val (showPhone, onShowPhone) = remember { mutableStateOf(false) }
+    val (showPhone, onShowPhone) = remember { mutableStateOf(true) }
     Scaffold(
         modifier = modifier,
         topBar = {
