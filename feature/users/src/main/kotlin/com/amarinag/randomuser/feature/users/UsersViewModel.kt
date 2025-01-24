@@ -4,6 +4,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
+import com.amarinag.randomuser.core.domain.DeleteUserByEmailUseCase
+import com.amarinag.randomuser.core.domain.DeleteUserByEmailUseCase.Params
 import com.amarinag.randomuser.core.domain.GetUsersUseCase
 import com.amarinag.randomuser.core.model.User
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -14,12 +16,14 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @OptIn(ExperimentalCoroutinesApi::class, FlowPreview::class)
 @HiltViewModel
 class UsersViewModel @Inject constructor(
-    private val getUsersUseCase: GetUsersUseCase
+    private val getUsersUseCase: GetUsersUseCase,
+    private val deleteUserByEmailUseCase: DeleteUserByEmailUseCase
 ) : ViewModel() {
     private val queryFlow: MutableStateFlow<String> = MutableStateFlow("")
     val uiState: Flow<PagingData<User>> =
@@ -32,11 +36,8 @@ class UsersViewModel @Inject constructor(
     }
 
     fun onDeleteUser(user: User) {
-//        _uiState.update {
-//            it.copy(users = _uiState.value.users?.filter { it != user } ?: _uiState.value.users)
-//        }
-    }
-
-    fun getUsers(loadMore: Boolean = false) {
+        viewModelScope.launch {
+            deleteUserByEmailUseCase(Params(user.email))
+        }
     }
 }

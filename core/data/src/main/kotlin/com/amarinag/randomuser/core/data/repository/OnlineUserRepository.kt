@@ -44,4 +44,8 @@ class OnlineUserRepository @Inject constructor(
 
     override fun getUserByEmail(email: String): Flow<User> = userDao.getUserByEmail(email)
         .map(UserEntity::asModel)
+
+    override suspend fun deleteUserByEmail(email: String) {
+        userDao.deleteUserByEmail(email)
+    }
 }

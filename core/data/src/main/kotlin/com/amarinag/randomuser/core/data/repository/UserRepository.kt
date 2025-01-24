@@ -7,4 +7,5 @@ import kotlinx.coroutines.flow.Flow
 interface UserRepository {
     fun getUsers(query: String?): Flow<PagingData<User>>
     fun getUserByEmail(email: String): Flow<User>
+    suspend fun deleteUserByEmail(email: String)
 }

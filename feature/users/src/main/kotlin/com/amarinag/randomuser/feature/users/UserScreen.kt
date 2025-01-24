@@ -48,7 +48,6 @@ internal fun UsersRouter(
         uiState = uiState,
         onUserClick = onUserClick,
         onDeleteUser = viewModel::onDeleteUser,
-        loadMoreUsers = { viewModel.getUsers(true) },
         queryFilter = viewModel::queryFilter,
         modifier = modifier
     )
@@ -59,7 +58,6 @@ internal fun UsersScreen(
     uiState: LazyPagingItems<User>,
     onUserClick: (String) -> Unit,
     onDeleteUser: (User) -> Unit,
-    loadMoreUsers: () -> Unit,
     queryFilter: (String) -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -111,8 +109,6 @@ internal fun UsersScreen(
                         users = uiState,
                         onUserClick = onUserClick,
                         onDeleteUser = onDeleteUser,
-                        loadMoreUsers = loadMoreUsers,
-                        isLoadingMore = uiState.loadState.append.endOfPaginationReached,
                         isFilteredList = false,
                         showPhone = showPhone,
                         modifier = modifier
@@ -127,11 +123,9 @@ internal fun UsersScreen(
 @Composable
 fun UsersList(
     users: LazyPagingItems<User>,
-    isLoadingMore: Boolean,
     isFilteredList: Boolean,
     onUserClick: (String) -> Unit,
     onDeleteUser: (User) -> Unit,
-    loadMoreUsers: () -> Unit,
     modifier: Modifier = Modifier,
     showPhone: Boolean = false
 ) {
