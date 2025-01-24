@@ -43,6 +43,7 @@ android {
 
 dependencies {
     implementation(project(":core:designsystem"))
+    implementation(projects.core.data)
 
 
     implementation(project(":feature:users"))

@@ -8,6 +8,7 @@ import androidx.paging.map
 import com.amarinag.core.database.dao.UserDao
 import com.amarinag.core.database.model.UserEntity
 import com.amarinag.core.database.model.asModel
+import com.amarinag.core.datastore.RandomUserPreferenceDataSource
 import com.amarinag.randomuser.core.data.paging.UserRemoteMediator
 import com.amarinag.randomuser.core.model.User
 import com.amarinag.randomuser.core.network.RandomUserDataSource
@@ -21,7 +22,8 @@ import javax.inject.Singleton
 @OptIn(ExperimentalPagingApi::class)
 class OnlineUserRepository @Inject constructor(
     private val network: RandomUserDataSource,
-    private val userDao: UserDao
+    private val userDao: UserDao,
+    private val dataStore: RandomUserPreferenceDataSource,
 ) : UserRepository {
 
     private val pagingSourceFactory = { userDao.getUsers() }
@@ -30,12 +32,13 @@ class OnlineUserRepository @Inject constructor(
             pageSize = 20,
             enablePlaceholders = false,
             prefetchDistance = 3,
-            initialLoadSize = 30,
+            initialLoadSize = 50,
         ),
         remoteMediator = UserRemoteMediator(
             query,
             network = network,
-            userDao = userDao
+            userDao = userDao,
+            dataStore = dataStore
         ),
         pagingSourceFactory = pagingSourceFactory
     ).flow.map { pagingData -> pagingData.map { it.asModel() } }
