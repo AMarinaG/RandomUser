@@ -13,7 +13,6 @@ import com.amarinag.randomuser.core.data.paging.UserRemoteMediator
 import com.amarinag.randomuser.core.model.User
 import com.amarinag.randomuser.core.network.RandomUserDataSource
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.emptyFlow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -41,8 +40,8 @@ class OnlineUserRepository @Inject constructor(
             dataStore = dataStore
         ),
         pagingSourceFactory = pagingSourceFactory
-    ).flow.map { pagingData -> pagingData.map { it.asModel() } }
+    ).flow.map { pagingData -> pagingData.map(UserEntity::asModel) }
 
-    override fun getUserByEmail(email: String): Flow<User> = emptyFlow()
-//        flowOf(users.first { it.email == email })
+    override fun getUserByEmail(email: String): Flow<User> = userDao.getUserByEmail(email)
+        .map(UserEntity::asModel)
 }
