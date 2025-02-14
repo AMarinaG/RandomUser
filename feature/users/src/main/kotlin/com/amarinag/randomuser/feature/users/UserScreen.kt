@@ -18,7 +18,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
@@ -61,9 +61,9 @@ internal fun UsersScreen(
     queryFilter: (String) -> Unit,
     modifier: Modifier = Modifier
 ) {
-    var query by remember { mutableStateOf("") }
-    var isSearchActive by remember { mutableStateOf(false) }
-    val (showPhone, onShowPhone) = remember { mutableStateOf(true) }
+    var query by rememberSaveable { mutableStateOf("") }
+    var isSearchActive by rememberSaveable { mutableStateOf(false) }
+    val (showPhone, onShowPhone) = rememberSaveable { mutableStateOf(true) }
     Scaffold(
         modifier = modifier,
         topBar = {
